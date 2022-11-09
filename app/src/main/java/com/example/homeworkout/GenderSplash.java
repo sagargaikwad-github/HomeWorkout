@@ -1,13 +1,11 @@
 package com.example.homeworkout;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager2.widget.ViewPager2;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
-import android.content.res.Resources;
+import android.content.Intent;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,12 +13,10 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.homeworkout.R;
+import com.example.homeworkout.dashboard.Dashboard;
 
 import java.util.Calendar;
-import java.util.Date;
 
 public class GenderSplash extends AppCompatActivity {
     LinearLayout boyLL, girlLL;
@@ -95,7 +91,8 @@ public class GenderSplash extends AppCompatActivity {
         LetsGoBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent=new Intent(GenderSplash.this, Dashboard.class);
+                startActivity(intent);
             }
         });
     }
