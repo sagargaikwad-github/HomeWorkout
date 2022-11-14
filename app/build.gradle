@@ -44,4 +44,7 @@ dependencies {
 
     //Circuler Imageview
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    //implementation 'com.felipecsl:gifimageview:2.2.0'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.17'
 }
