@@ -1,5 +1,6 @@
 package com.example.homeworkout.dashboard;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -34,7 +35,7 @@ public class SelectCourseAdapter extends RecyclerView.Adapter<SelectCourseAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull holder holder, int position) {
+    public void onBindViewHolder(@NonNull holder holder, @SuppressLint("RecyclerView") int position) {
 
         holder.courseIV.setImageResource(courseList.get(position).getCourseImage());
         holder.courseTV.setText(courseList.get(position).getCourseName());
@@ -42,7 +43,9 @@ public class SelectCourseAdapter extends RecyclerView.Adapter<SelectCourseAdapte
         holder.courseTV.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(context,CourseView.class);
+                Intent intent=new Intent(context,WeeksDisplay.class);
+                intent.putExtra("Selected Course Name",courseList.get(position).getCourseName());
+                intent.putExtra("Selected Course Id",courseList.get(position).getCourseID());
                 context.startActivity(intent);
             }
         });

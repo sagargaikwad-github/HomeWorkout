@@ -13,17 +13,21 @@
         android:supportsRtl="true"
         tools:targetApi="31">
         <activity
+            android:name=".dashboard.WeeksDisplay"
+            android:theme="@style/Theme.SplashScreen"
+            android:exported="false" />
+        <activity
             android:name=".SplashScreen"
             android:exported="true"
             android:theme="@style/Theme.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".dashboard.CourseViewMain"
+            android:theme="@style/Theme.SplashScreen"
             android:exported="false" />
         <activity
             android:name=".dashboard.CourseView"
@@ -40,9 +44,7 @@
         <activity
             android:name=".MainSplash"
             android:exported="true"
-            android:theme="@style/Theme.SplashScreen">
-
-        </activity>
+            android:theme="@style/Theme.SplashScreen"></activity>
 
         <meta-data
             android:name="preloaded_fonts"

@@ -15,18 +15,14 @@ import com.example.homeworkout.dashboard.SqliteDataClass;
 
 public class MainSplash extends AppCompatActivity {
     Button getStartedBTN;
-;
+    ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getStartedBTN=findViewById(R.id.LetsGoBTN);
-
-
-
-
+        getStartedBTN = findViewById(R.id.LetsGoBTN);
     }
 
     @Override
@@ -35,7 +31,7 @@ public class MainSplash extends AppCompatActivity {
         getStartedBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainSplash.this,GenderSplash.class);
+                Intent intent = new Intent(MainSplash.this, GenderSplash.class);
                 startActivity(intent);
 
             }

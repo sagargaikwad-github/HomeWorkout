@@ -49,8 +49,6 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
         navigationView.setOnNavigationItemSelectedListener(this);
         navigationView.setSelectedItemId(R.id.nav_training);
 
-
-
     }
 
     TrainingFragment trainingFragment = new TrainingFragment();

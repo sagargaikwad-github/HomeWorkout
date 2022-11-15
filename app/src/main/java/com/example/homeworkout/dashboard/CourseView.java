@@ -5,22 +5,26 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Base64;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toolbar;
 
 import com.example.homeworkout.R;
 
-import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 public class CourseView extends AppCompatActivity {
-    ArrayList<BegineerModelData>begineerList=new ArrayList<BegineerModelData>();
+    ArrayList<CourseModelData>courseModelDataArrayList=new ArrayList<CourseModelData>();
     RecyclerView courseViewRV;
-    String image;
 
+    String image;
+    Toolbar toolbar;
+    ImageView appBar_IV_CourseView;
+
+    String SelectedCourseName;
+    int SelectedCourseWeek;
 
     @SuppressLint("WrongThread")
     @Override
@@ -30,13 +34,14 @@ public class CourseView extends AppCompatActivity {
 
         courseViewRV=findViewById(R.id.courseViewRV);
 
-        begineerList.clear();
+        toolbar=findViewById(R.id.toolBar_CourseView);
+        appBar_IV_CourseView=findViewById(R.id.appBar_IV_CourseView);
 
-        begineerList.add(new BegineerModelData(1,"Day Name",20));
-        begineerList.add(new BegineerModelData(2,"Leg Day",20));
-        begineerList.add(new BegineerModelData(3,"Chest Day",20));
-        begineerList.add(new BegineerModelData(4,"Rest",0));
-        begineerList.add(new BegineerModelData(5,"Biceps Day",20));
+        Bundle bundle=getIntent().getExtras();
+        SelectedCourseName=bundle.getString("Selected Course Name");
+        SelectedCourseWeek=bundle.getInt("Selected Course Week");
+
+        setSupportActionBar(toolbar);
 
 
 //        SqliteData sqliteData=new SqliteData(this);
@@ -59,9 +64,40 @@ public class CourseView extends AppCompatActivity {
 //            sqliteData.updateBegineerImage(i,image);
 //        }
 
-        courseViewRV.setLayoutManager(new LinearLayoutManager(this));
-        BeginnerAdapter beginnerAdapter=new BeginnerAdapter(begineerList,this);
-        courseViewRV.setAdapter(beginnerAdapter);
+        courseModelDataArrayList.add(new CourseModelData(1,0));
+        courseModelDataArrayList.add(new CourseModelData(2,0));
+        courseModelDataArrayList.add(new CourseModelData(3,0));
+        courseModelDataArrayList.add(new CourseModelData(4,0));
+        courseModelDataArrayList.add(new CourseModelData(5,0));
+        courseModelDataArrayList.add(new CourseModelData(6,0));
+        courseModelDataArrayList.add(new CourseModelData(7,0));
 
+        ButtonClicks();
+
+    }
+
+    private void ButtonClicks() {
+
+        appBar_IV_CourseView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
+    }
+
+    private void setSupportActionBar(Toolbar toolbar) {
+        toolbar.setTitle(String.valueOf("Week "+SelectedCourseWeek));
+        toolbar.setTitleTextColor(Color.WHITE);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        courseViewRV.setLayoutManager(new LinearLayoutManager(this));
+        CourseAdapter courseAdapter =new CourseAdapter(courseModelDataArrayList,this,SelectedCourseName,SelectedCourseWeek);
+        courseViewRV.setAdapter(courseAdapter);
     }
 }
