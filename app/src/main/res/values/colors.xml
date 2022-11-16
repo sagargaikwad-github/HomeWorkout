@@ -12,8 +12,7 @@
     <color name="red_color_primary">#ff0321</color>
     <color name="red_color_light">#ff5b4c</color>
     <color name="red_color_dark">#c20000</color>
-
-
+    <color name="day_item_background">#FAF7F7</color>
 
 
 </resources>

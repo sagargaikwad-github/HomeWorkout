@@ -7,6 +7,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.ArrayList;
+
 public class SqliteDataClass extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "workoutapp.db";
     public static final int DATABASE_VERSION = 4;
@@ -220,6 +222,30 @@ public class SqliteDataClass extends SQLiteOpenHelper {
         cursor.moveToFirst();
         @SuppressLint("Range") String count = cursor.getString(cursor.getColumnIndex(cursor.getColumnName(0)));
         return Integer.parseInt(count);
+    }
+
+    public ArrayList<DayData> dayArrayList(String courseName, int week, int day) {
+        SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
+
+        ArrayList<DayData>arrayList=new ArrayList<>();
+
+        Cursor cursor=sqLiteDatabase.rawQuery("Select * from Workout where workout_type=? and week_no=? and day_no=?",new String[]{String.valueOf(courseName),String.valueOf(week),String.valueOf(day)});
+        if(cursor.moveToFirst()){
+            do {
+                int week_no=cursor.getInt(0);
+                int day_no=cursor.getInt(1);
+                int workout_no=cursor.getInt(2);
+                String workout_name=cursor.getString(3);
+                String workout_type=cursor.getString(4);
+                int workout_timer=cursor.getInt(7);
+                int workout_calories=cursor.getInt(9);
+                int workout_isCompleted=cursor.getInt(10);
+
+                arrayList.add(new DayData(week_no,day_no,workout_no,workout_timer,workout_calories,workout_isCompleted,workout_name,workout_type));
+            }while (cursor.moveToNext());
+        }
+
+   return arrayList;
     }
 
 //    public ArrayList<WeeksData> getWeeklyData(String selectedCourseName) {

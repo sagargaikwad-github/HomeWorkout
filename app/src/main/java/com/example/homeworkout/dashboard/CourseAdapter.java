@@ -43,7 +43,7 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.holder> {
     public void onBindViewHolder(@NonNull holder holder, @SuppressLint("RecyclerView") int position) {
 
 
-       holder.course_item_dayno.setText("Day : "+String.valueOf(courseModelDataArrayList.get(position).getWorkout_day()));
+      holder.course_item_dayno.setText("Day : "+String.valueOf(courseModelDataArrayList.get(position).getWorkout_day()));
      //holder.progress.setText(String.valueOf(courseModelDataArrayList.get(position).getWorkout_progress()));
 
     //  holder.ProgressIndicator.setProgressCompat(dayProgress,true);
@@ -52,9 +52,10 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.holder> {
         holder.ClickRL.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View view) {
-              Intent intent=new Intent(context,CourseViewMain.class);
-              intent.putExtra("Day" ,selectedCourseName);
-              intent.putExtra("week" ,selectedCourseWeek);
+              Intent intent=new Intent(context, DayView.class);
+              intent.putExtra("CourseName" ,selectedCourseName);
+              intent.putExtra("Week" ,selectedCourseWeek);
+              intent.putExtra("Day" ,courseModelDataArrayList.get(position).getWorkout_day());
               context.startActivity(intent);
           }
       });

@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.example.homeworkout.R;
 
-public class CourseViewMain extends AppCompatActivity {
+public class PlayExercise extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_course_view_main);
+        setContentView(R.layout.activity_play_exercise);
     }
 }

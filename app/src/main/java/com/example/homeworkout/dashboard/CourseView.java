@@ -9,6 +9,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.example.homeworkout.R;
@@ -40,6 +41,7 @@ public class CourseView extends AppCompatActivity {
         Bundle bundle=getIntent().getExtras();
         SelectedCourseName=bundle.getString("Selected Course Name");
         SelectedCourseWeek=bundle.getInt("Selected Course Week");
+
 
         setSupportActionBar(toolbar);
 
