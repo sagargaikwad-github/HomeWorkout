@@ -88,7 +88,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/ic_play_vector" />
+                android:src="@drawable/ic_pause_vector" />
         </LinearLayout>
     </LinearLayout>
 

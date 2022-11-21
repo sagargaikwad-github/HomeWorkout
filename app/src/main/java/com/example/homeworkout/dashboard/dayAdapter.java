@@ -1,6 +1,8 @@
 package com.example.homeworkout.dashboard;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,9 +34,22 @@ public class dayAdapter extends RecyclerView.Adapter<dayAdapter.holder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull holder holder, int position) {
+    public void onBindViewHolder(@NonNull holder holder, @SuppressLint("RecyclerView") int position) {
         holder.day_exname_tv.setText(dayDataArrayList.get(position).workoutname);
         holder.day_extimer_tv.setText("Total Time : "+String.valueOf(dayDataArrayList.get(position).workouttimer)+" sec");
+
+        holder.day_explay_iv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(context,PlayExerciseSingle.class);
+                intent.putExtra("CourseName",dayDataArrayList.get(position).getWorkoutype());
+                intent.putExtra("week",dayDataArrayList.get(position).getWeekno());
+                intent.putExtra("day",dayDataArrayList.get(position).getDayno());
+                intent.putExtra("workoutNo",dayDataArrayList.get(position).getWorkoutno());
+                context.startActivity(intent);
+            }
+        });
+
 
     }
 

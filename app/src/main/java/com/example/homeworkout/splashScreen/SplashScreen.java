@@ -1,4 +1,4 @@
-package com.example.homeworkout;
+package com.example.homeworkout.splashScreen;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ProgressBar;
 
+import com.example.homeworkout.R;
 import com.example.homeworkout.dashboard.Dashboard;
 
 public class SplashScreen extends AppCompatActivity {

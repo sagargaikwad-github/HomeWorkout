@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.homeworkout">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -11,26 +13,31 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:theme="@style/Theme.SplashScreen"
         tools:targetApi="31">
         <activity
+            android:name=".dashboard.PlayExerciseSingle"
+            android:exported="false" />
+        <activity
+            android:name=".dashboard.RestActivity"
+            android:exported="true"></activity>
+        <activity
             android:name=".dashboard.PlayExercise"
-            android:theme="@style/Theme.SplashScreen"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true"
+            android:theme="@style/Theme.SplashScreen"></activity>
         <activity
             android:name=".dashboard.WeeksDisplay"
             android:exported="false"
             android:theme="@style/Theme.SplashScreen" />
         <activity
-            android:name=".SplashScreen"
+            android:name=".splashScreen.SplashScreen"
             android:exported="true"
             android:theme="@style/Theme.SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".dashboard.DayView"
@@ -45,11 +52,11 @@
             android:exported="false"
             android:theme="@style/Theme.SplashScreen" />
         <activity
-            android:name=".GenderSplash"
+            android:name=".splashScreen.GenderSplash"
             android:exported="false"
             android:theme="@style/Theme.SplashScreen" />
         <activity
-            android:name=".MainSplash"
+            android:name=".splashScreen.MainSplash"
             android:exported="true"
             android:theme="@style/Theme.SplashScreen" />
 

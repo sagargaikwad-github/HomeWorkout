@@ -34,9 +34,10 @@
             android:src="@drawable/ic_previous_vector"></ImageView>
 
         <ImageView
+            android:id="@+id/playPause_BTN"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:background="@drawable/ic_pause_vector"></ImageView>
+            android:src="@drawable/ic_play_vector"></ImageView>
 
         <ImageView
             android:layout_width="40dp"
@@ -53,7 +54,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/TimerTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"

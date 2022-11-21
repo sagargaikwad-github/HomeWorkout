@@ -4,16 +4,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.example.homeworkout.R;
+import com.example.homeworkout.sqLiteData.SqliteDataClass;
 
 import java.util.ArrayList;
 
@@ -28,6 +29,8 @@ public class DayView extends AppCompatActivity {
     dayAdapter dayAdapter;
     TextView caloriesBurnedTV,totalTimeTV;
     LinearLayout startLL;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +95,20 @@ public class DayView extends AppCompatActivity {
         day_view_rv.setLayoutManager(new LinearLayoutManager(this));
         dayAdapter=new dayAdapter(dayDataArrayList,this);
         day_view_rv.setAdapter(dayAdapter);
+
+        startLL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(DayView.this,PlayExercise.class);
+                intent.putExtra("CourseName",CourseName);
+                intent.putExtra("week",week);
+                intent.putExtra("day",day);
+                startActivity(intent);
+
+            }
+        });
+
+
 
     }
 }

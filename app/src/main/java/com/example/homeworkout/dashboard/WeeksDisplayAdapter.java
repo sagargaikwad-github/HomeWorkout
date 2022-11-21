@@ -2,20 +2,18 @@ package com.example.homeworkout.dashboard;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.homeworkout.R;
+import com.example.homeworkout.sqLiteData.SqliteDataClass;
 
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 public class WeeksDisplayAdapter extends RecyclerView.Adapter<WeeksDisplayAdapter.holder> {
     ArrayList<WeeksData>arrayList;
