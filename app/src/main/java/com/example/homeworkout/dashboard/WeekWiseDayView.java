@@ -9,23 +9,24 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.example.homeworkout.R;
+import com.example.homeworkout.modelData.CourseModelData;
+import com.example.homeworkout.sqLiteData.SqliteDataClass;
 
 import java.util.ArrayList;
 
-public class CourseView extends AppCompatActivity {
+public class WeekWiseDayView extends AppCompatActivity {
     ArrayList<CourseModelData>courseModelDataArrayList=new ArrayList<CourseModelData>();
     RecyclerView courseViewRV;
 
-    String image;
     Toolbar toolbar;
     ImageView appBar_IV_CourseView;
 
     String SelectedCourseName;
     int SelectedCourseWeek;
+    SqliteDataClass sqliteDataClass;
 
     @SuppressLint("WrongThread")
     @Override
@@ -76,6 +77,10 @@ public class CourseView extends AppCompatActivity {
 
         ButtonClicks();
 
+        sqliteDataClass=new SqliteDataClass(this);
+
+
+
     }
 
     private void ButtonClicks() {
@@ -99,7 +104,7 @@ public class CourseView extends AppCompatActivity {
         super.onResume();
 
         courseViewRV.setLayoutManager(new LinearLayoutManager(this));
-        CourseAdapter courseAdapter =new CourseAdapter(courseModelDataArrayList,this,SelectedCourseName,SelectedCourseWeek);
-        courseViewRV.setAdapter(courseAdapter);
+        WeekWiseDayViewAdapter weekWiseDayViewAdapter =new WeekWiseDayViewAdapter(courseModelDataArrayList,this,SelectedCourseName,SelectedCourseWeek);
+        courseViewRV.setAdapter(weekWiseDayViewAdapter);
     }
 }

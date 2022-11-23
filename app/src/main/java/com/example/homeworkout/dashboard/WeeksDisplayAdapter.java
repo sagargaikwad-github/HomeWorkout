@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.homeworkout.R;
+import com.example.homeworkout.modelData.WeeksData;
 import com.example.homeworkout.sqLiteData.SqliteDataClass;
 
 import java.util.ArrayList;
@@ -62,7 +63,7 @@ public class WeeksDisplayAdapter extends RecyclerView.Adapter<WeeksDisplayAdapte
        holder.itemView.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               Intent intent=new Intent(context,CourseView.class);
+               Intent intent=new Intent(context, WeekWiseDayView.class);
                intent.putExtra("Selected Course Name",selectedCourseName);
                intent.putExtra("Selected Course Week",weekNo);
                context.startActivity(intent);

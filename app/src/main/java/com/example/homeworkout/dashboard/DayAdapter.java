@@ -13,16 +13,25 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.homeworkout.R;
+import com.example.homeworkout.modelData.DayData;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
-public class dayAdapter extends RecyclerView.Adapter<dayAdapter.holder> {
+public class DayAdapter extends RecyclerView.Adapter<DayAdapter.holder> {
     ArrayList<DayData> dayDataArrayList;
     Context context;
+    String courseName;
 
-    public dayAdapter(ArrayList<DayData> dayDataArrayList, Context context) {
+    public DayAdapter(ArrayList<DayData> dayDataArrayList, Context context, String courseName) {
         this.dayDataArrayList = dayDataArrayList;
         this.context = context;
+        this.courseName=courseName;
     }
 
     @NonNull
@@ -35,14 +44,43 @@ public class dayAdapter extends RecyclerView.Adapter<dayAdapter.holder> {
 
     @Override
     public void onBindViewHolder(@NonNull holder holder, @SuppressLint("RecyclerView") int position) {
-        holder.day_exname_tv.setText(dayDataArrayList.get(position).workoutname);
-        holder.day_extimer_tv.setText("Total Time : "+String.valueOf(dayDataArrayList.get(position).workouttimer)+" sec");
+        holder.day_exname_tv.setText(dayDataArrayList.get(position).getWorkoutname());
+        holder.day_extimer_tv.setText("Total Time : "+String.valueOf(dayDataArrayList.get(position).getWorkouttimer())+" sec");
+
+
+
+//        FileInputStream fis = null;
+//        try {
+//            fis = context.openFileInput("Photo1");
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        }
+//        InputStreamReader inputStreamReader =
+//                new InputStreamReader(fis, StandardCharsets.UTF_8);
+//        StringBuilder stringBuilder = new StringBuilder();
+//        try (BufferedReader reader = new BufferedReader(inputStreamReader)) {
+//            String line = reader.readLine();
+//            while (line != null) {
+//                stringBuilder.append(line);
+//                line = reader.readLine();
+//
+//            }
+//        } catch (IOException e) {
+//            // Error occurred when opening raw file for reading.
+//        } finally {
+//            String contents = stringBuilder.toString();
+//
+//
+//            //holder.day_explay_iv.setImageResource(Integer.parseInt(contents));
+//        }
+
+
 
         holder.day_explay_iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(context,PlayExerciseSingle.class);
-                intent.putExtra("CourseName",dayDataArrayList.get(position).getWorkoutype());
+                intent.putExtra("CourseName",courseName);
                 intent.putExtra("week",dayDataArrayList.get(position).getWeekno());
                 intent.putExtra("day",dayDataArrayList.get(position).getDayno());
                 intent.putExtra("workoutNo",dayDataArrayList.get(position).getWorkoutno());

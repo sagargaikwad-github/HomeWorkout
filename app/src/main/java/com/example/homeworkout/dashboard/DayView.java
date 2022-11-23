@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toolbar;
 
 import com.example.homeworkout.R;
+import com.example.homeworkout.modelData.DayData;
 import com.example.homeworkout.sqLiteData.SqliteDataClass;
 
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public class DayView extends AppCompatActivity {
     ImageView day_back_btn;
     RecyclerView day_view_rv;
     ArrayList<DayData>dayDataArrayList=new ArrayList<DayData>();
-    dayAdapter dayAdapter;
+    DayAdapter dayAdapter;
     TextView caloriesBurnedTV,totalTimeTV;
     LinearLayout startLL;
 
@@ -54,6 +55,7 @@ public class DayView extends AppCompatActivity {
 
         SqliteDataClass sqliteDataClass=new SqliteDataClass(this);
         dayDataArrayList=sqliteDataClass.dayArrayList(CourseName,week,day);
+
 
         int calories=0;
         int calories1=0;
@@ -93,7 +95,7 @@ public class DayView extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         day_view_rv.setLayoutManager(new LinearLayoutManager(this));
-        dayAdapter=new dayAdapter(dayDataArrayList,this);
+        dayAdapter=new DayAdapter(dayDataArrayList,this,CourseName);
         day_view_rv.setAdapter(dayAdapter);
 
         startLL.setOnClickListener(new View.OnClickListener() {
@@ -104,7 +106,6 @@ public class DayView extends AppCompatActivity {
                 intent.putExtra("week",week);
                 intent.putExtra("day",day);
                 startActivity(intent);
-
             }
         });
 

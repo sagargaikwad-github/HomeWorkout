@@ -16,6 +16,16 @@
         android:layout_marginRight="40dp"
         app:srcCompat="@drawable/ic_speaker_vector" />
 
+    <TextView
+        android:id="@+id/workoutNameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Workout Name"
+        android:gravity="center"
+        android:layout_marginLeft="15dp"
+        android:textColor="@color/black"
+        android:textSize="30sp"></TextView>
+
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="300dp"
@@ -40,6 +50,7 @@
             android:src="@drawable/ic_play_vector"></ImageView>
 
         <ImageView
+            android:id="@+id/nextBTN"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:src="@drawable/ic_next_vector"></ImageView>
@@ -48,9 +59,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="100dp"
-        android:duplicateParentState="false"
         android:gravity="bottom|center"
+        android:layout_marginBottom="30dp"
         android:orientation="vertical">
 
         <TextView

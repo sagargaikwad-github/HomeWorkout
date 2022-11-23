@@ -1,5 +1,7 @@
-package com.example.homeworkout.dashboard;
+package com.example.homeworkout.fragment;
 
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,7 +13,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.homeworkout.R;
+import com.example.homeworkout.dashboard.SelectCourseAdapter;
+import com.example.homeworkout.modelData.SelectCourseModel;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class TrainingFragment extends Fragment {
@@ -41,6 +52,10 @@ public class TrainingFragment extends Fragment {
         selectCourseRV.setLayoutManager(new LinearLayoutManager(getActivity()));
 
         selectCourseRV.setAdapter(selectCourseAdapter);
+
         return view;
+
+
+
     }
 }

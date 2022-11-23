@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/trainingFragment"
-        android:name="com.example.homeworkout.dashboard.TrainingFragment"
+        android:name="com.example.homeworkout.fragment.TrainingFragment"
         android:label="fragment_training"
         tools:layout="@layout/fragment_training" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/exploreFragment"
-        android:name="com.example.homeworkout.dashboard.ExploreFragment"
+        android:name="com.example.homeworkout.fragment.ExploreFragment"
         android:label="fragment_explore"
         tools:layout="@layout/fragment_explore" >
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/reportFragment"
-        android:name="com.example.homeworkout.dashboard.ReportFragment"
+        android:name="com.example.homeworkout.fragment.ReportFragment"
         android:label="fragment_report"
         tools:layout="@layout/fragment_report" >
         <action
@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment2"
-        android:name="com.example.homeworkout.dashboard.SettingsFragment"
+        android:name="com.example.homeworkout.fragment.SettingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
 </navigation>

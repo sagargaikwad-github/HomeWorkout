@@ -29,8 +29,8 @@ public class MainSplash extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainSplash.this, GenderSplash.class);
                 startActivity(intent);
-
             }
         });
+
     }
 }

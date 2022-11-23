@@ -2,9 +2,13 @@ package com.example.homeworkout.splashScreen;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -21,6 +25,11 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class GenderSplash extends AppCompatActivity {
@@ -53,7 +62,7 @@ public class GenderSplash extends AppCompatActivity {
         boyIV = findViewById(R.id.boyIV);
         girlIV = findViewById(R.id.girlIV);
 
-        sharedPreferences=getSharedPreferences("SplashScreen",MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("SplashScreen", MODE_PRIVATE);
 
         dayTextLayout = findViewById(R.id.dayTextLayout);
         monthTextLayout = findViewById(R.id.monthTextLayout);
@@ -69,7 +78,6 @@ public class GenderSplash extends AppCompatActivity {
         LetsGoBTN = findViewById(R.id.LetsGoBTN);
 
         sqliteDataClass = new SqliteDataClass(this);
-
 
 
         ArrayList<Integer> daysArray = new ArrayList<>();
@@ -212,9 +220,15 @@ public class GenderSplash extends AppCompatActivity {
             startActivity(intent);
 
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("FirstTimeSplash", Birthdate );
+            editor.putString("FirstTimeSplash", Birthdate);
             editor.commit();
+
+
+
+
+
             GenderSplash.this.finish();
+
 
         }
     }

@@ -1,4 +1,4 @@
-package com.example.homeworkout.dashboard;
+package com.example.homeworkout.modelData;
 
 public class CourseModelData {
     int Workout_day;

@@ -8,10 +8,10 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.example.homeworkout.R;
+import com.example.homeworkout.modelData.WeeksData;
 
 import java.util.ArrayList;
 
@@ -63,7 +63,6 @@ public class WeeksDisplay extends AppCompatActivity  {
             }
         });
 
-
     }
 
     private void setSupportActionBar(Toolbar week_display_toolbar) {
@@ -76,7 +75,7 @@ public class WeeksDisplay extends AppCompatActivity  {
         super.onResume();
 
         weeks_rv.setLayoutManager(new LinearLayoutManager(this));
-         weeksDisplayAdapter=new WeeksDisplayAdapter(weeksDataArrayList,this,SelectedCourseName);
+        weeksDisplayAdapter=new WeeksDisplayAdapter(weeksDataArrayList,this,SelectedCourseName);
         weeks_rv.setAdapter(weeksDisplayAdapter);
     }
 }

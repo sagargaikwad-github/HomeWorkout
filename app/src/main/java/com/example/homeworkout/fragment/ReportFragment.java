@@ -1,4 +1,4 @@
-package com.example.homeworkout.dashboard;
+package com.example.homeworkout.fragment;
 
 import android.os.Bundle;
 

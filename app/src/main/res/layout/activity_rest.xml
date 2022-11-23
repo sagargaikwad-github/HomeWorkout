@@ -13,6 +13,7 @@
         android:layout_marginTop="200dp"
         android:gravity="center"
         android:text="Take a Break"
+        android:fontFamily="@font/balsamiq_sans_bold"
         android:textColor="@color/black"
         android:textSize="32sp"></TextView>
 
@@ -24,6 +25,7 @@
         android:orientation="horizontal">
 
         <LinearLayout
+            android:id="@+id/RestMinusBTN"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="10dp"
@@ -41,7 +43,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/balsamiq_sans_bold"
                 android:text="5 Sec"
+                android:textColor="@color/black"
                 android:textSize="20sp"></TextView>
         </LinearLayout>
 
@@ -52,15 +56,18 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/RestTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/balsamiq_sans_bold"
                 android:padding="10dp"
-                android:text="5 Sec"
+                android:text="5"
                 android:textColor="@color/black"
                 android:textSize="32sp"></TextView>
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/RestAddBTN"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -78,20 +85,24 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/balsamiq_sans_bold"
                 android:text="5 Sec"
+                android:textColor="@color/black"
                 android:textSize="20sp"></TextView>
         </LinearLayout>
 
     </LinearLayout>
 
     <TextView
+        android:id="@+id/RestSkipBTN"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
         android:background="@drawable/skip_bg"
+        android:fontFamily="@font/balsamiq_sans_bold"
         android:padding="8dp"
         android:text="skip"
-        android:fontFamily="@font/balsamiq_sans_bold"
+        android:textColor="@color/black"
         android:textSize="22sp"></TextView>
 </LinearLayout>

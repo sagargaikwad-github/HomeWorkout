@@ -7,13 +7,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.homeworkout.dashboard.DayData;
+import com.example.homeworkout.modelData.DayData;
 
 import java.util.ArrayList;
 
 public class SqliteDataClass extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "workoutapp.db";
-    public static final int DATABASE_VERSION = 4;
+    public static final int DATABASE_VERSION = 1;
 
     public SqliteDataClass(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -27,143 +27,140 @@ public class SqliteDataClass extends SQLiteOpenHelper {
         String user = "create table User(user_gender int,user_birthdate text,user_height int,user_weight int)";
         sqLiteDatabase.execSQL(user);
 
-        String query = "create table Days(day_no int primary key, day_name text, day_progress int)";
-        sqLiteDatabase.execSQL(query);
-        sqLiteDatabase.execSQL("insert into Days values(1,'name',20)");
+        String Beginner = "create table Begineer(Week_no int, Day_no text, Workout_no int,Workout_id Text,Workout_timer int,Workout_isCompleted int)";
+        sqLiteDatabase.execSQL(Beginner);
+        String Intermediate = "create table Intermediate(Week_no int, Day_no text, Workout_no int,Workout_id Text,Workout_timer int,Workout_isCompleted int)";
+        sqLiteDatabase.execSQL(Intermediate);
+        String Advanced = "create table Advanced(Week_no int, Day_no text, Workout_no int,Workout_id Text,Workout_timer int,Workout_isCompleted int)";
+        sqLiteDatabase.execSQL(Advanced);
+
+        sqLiteDatabase.execSQL("insert into Begineer values(1,1,1,'RIP',30,1)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,1,2,'AH',30,1)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,1,3,'ASL',30,1)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,1,4,'RIP',30,1)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,1,5,'RIP',30,1)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,1,6,'AC',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,1,7,'RIP',30,0)");
+
+        sqLiteDatabase.execSQL("insert into Begineer values(1,2,1,'RIP',30,1)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,2,2,'HSJC',30,1)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,2,3,'RIP',30,1)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,2,4,'RIP',30,1)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,2,5,'RIP',30,1)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,2,6,'RIP',30,1)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,2,7,'RIP',30,1)");
+
+        sqLiteDatabase.execSQL("insert into Begineer values(1,3,1,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,3,2,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,3,3,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,3,4,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,3,5,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,3,6,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,3,7,'RIP',30,0)");
+
+        sqLiteDatabase.execSQL("insert into Begineer values(1,4,1,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,4,2,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,4,3,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,4,4,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,4,5,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,4,6,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,4,7,'RIP',30,0)");
+
+        sqLiteDatabase.execSQL("insert into Begineer values(1,5,0,'',0,-1)");
+
+        sqLiteDatabase.execSQL("insert into Begineer values(1,6,1,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,6,2,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,6,3,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,6,4,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,6,5,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,6,6,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,6,7,'RIP',30,0)");
+
+        sqLiteDatabase.execSQL("insert into Begineer values(1,7,1,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,7,2,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,7,3,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,7,4,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,7,5,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,7,6,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,7,7,'RIP',30,0)");
+
+        sqLiteDatabase.execSQL("insert into Begineer values(2,1,1,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(2,1,2,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(2,1,3,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(2,1,4,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(2,1,5,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(2,1,6,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(2,1,7,'RIP',30,0)");
+
+        sqLiteDatabase.execSQL("insert into Begineer values(2,2,1,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(2,2,2,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(2,2,3,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(2,2,4,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(2,2,5,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(2,2,6,'RIP',30,0)");
+        sqLiteDatabase.execSQL("insert into Begineer values(2,2,7,'RIP',30,0)");
+
+        sqLiteDatabase.execSQL("insert into Begineer values(2,3,0,'',0,-1)");
 
 
-        sqLiteDatabase.execSQL("CREATE TABLE Workout(week_no INTEGER, day_no int, workout_no int, workout_name text, workout_type text, workout_image blob, workout_video blob, workout_timer int, workout_sound blob, workout_calories int, workout_isCompleted int )");
+        String Workout = "CREATE TABLE Workout(Workout_id Text primary key,Workout_name Text, Workout_image blob, Workout_video blob,  Workout_sound blob, Workout_calories int)";
+        sqLiteDatabase.execSQL(Workout);
 
-        //Week 1 Day 1 :
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,1,1,'Running in Place','Begineer',NULL,NULL,45,null,21,1)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,1,2,'Jumping Jacks','Begineer',NULL,NULL,30,null,16,1)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,1,3,'Squats','Begineer',NULL,NULL,30,null,25,1)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,1,4,'Knee Push-ups','Begineer',NULL,NULL,30,null,30,1)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,1,5,'High Plank','Begineer',NULL,NULL,30,null,16,1)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,1,6,'Jump Rope','Begineer',NULL,NULL,45,null,11,1)");
-
-        //Week 1 Day 2 :
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,2,1,'Running in Place','Begineer',NULL,NULL,45,null,21,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,2,2,'Knee Push-ups','Begineer',NULL,NULL,30,null,30,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,2,3,'Jumping Jacks','Begineer',NULL,NULL,30,null,16,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,2,4,'Squats','Begineer',NULL,NULL,30,null,25,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,2,5,'Jump Rope','Begineer',NULL,NULL,45,null,11,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,2,6,'High Plank','Begineer',NULL,NULL,30,null,16,0)");
-
-        //Week 1 Day 3 :
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,3,1,'Running in Place','Begineer',NULL,NULL,45,null,21,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,3,2,'Jumping Jacks','Begineer',NULL,NULL,30,null,16,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,3,3,'Squats','Begineer',NULL,NULL,30,null,25,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,3,4,'Knee Push-ups','Begineer',NULL,NULL,30,null,30,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,3,5,'High Plank','Begineer',NULL,NULL,30,null,16,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,3,6,'Jump Rope','Begineer',NULL,NULL,45,null,11,0)");
-
-        //Week 1 Day 4 :
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,4,1,'Rest Day','Begineer',NULL,NULL,0,null,0,0)");
-
-        //Week 1 Day 5 :
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,5,1,'Forward Lunges','Begineer',NULL,NULL,30,null,17,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,5,2,'Running in Place','Begineer',NULL,NULL,45,null,21,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,5,3,'Jumping Jacks','Begineer',NULL,NULL,30,null,16,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,5,4,'Knee Push-ups','Begineer',NULL,NULL,30,null,30,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,5,5,'Squats','Begineer',NULL,NULL,30,null,25,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,5,6,'Jump Rope','Begineer',NULL,NULL,45,null,11,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,5,7,'High Plank','Begineer',NULL,NULL,30,null,16,0)");
-
-        //Week 1 Day 6 :
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,6,1,'Mountain Climbers','Begineer',NULL,NULL,45,null,12,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,6,2,'Running in Place','Begineer',NULL,NULL,45,null,21,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,6,3,'Forward Lunges','Begineer',NULL,NULL,30,null,17,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,6,4,'Jumping Jacks','Begineer',NULL,NULL,30,null,16,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,6,5,'Knee Push-ups','Begineer',NULL,NULL,30,null,30,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,6,6,'Squats','Begineer',NULL,NULL,30,null,25,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,6,7,'Jump Rope','Begineer',NULL,NULL,45,null,11,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,6,8,'High Plank','Begineer',NULL,NULL,30,null,24,0)");
-
-
-        //Week 1 Day 7 :
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,7,1,'Mountain Climbers','Begineer',NULL,NULL,45,null,12,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,7,2,'High Knees','Begineer',NULL,NULL,30,null,24,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,7,3,'Running in Place','Begineer',NULL,NULL,45,null,21,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,7,4,'Forward Lunges','Begineer',NULL,NULL,30,null,17,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,7,5,'Jumping Jacks','Begineer',NULL,NULL,30,null,16,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,7,6,'Knee Push-ups','Begineer',NULL,NULL,30,null,30,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,7,7,'Squats','Begineer',NULL,NULL,30,null,25,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,7,8,'Jump Rope','Begineer',NULL,NULL,45,null,11,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(1,7,9,'High Plank','Begineer',NULL,NULL,30,null,24,0)");
-
-
-        //Week 2 Day 1 :
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,1,1,'Rest Day','Begineer',NULL,NULL,0,null,0,0)");
-
-        //Week 2 Day 2 :
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,2,1,'Inchworms','Begineer',NULL,NULL,45,null,12,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,2,2,'High Knees','Begineer',NULL,NULL,30,null,24,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,2,3,'Squats','Begineer',NULL,NULL,30,null,25,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,2,4,'Running in Place','Begineer',NULL,NULL,45,null,21,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,2,5,'Forward Lunges','Begineer',NULL,NULL,30,null,17,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,2,6,'Jumping Jacks','Begineer',NULL,NULL,45,null,19,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,2,7,'Knee Push-ups','Begineer',NULL,NULL,30,null,30,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,2,8,'Jump Squats','Begineer',NULL,NULL,30,null,11,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,2,9,'High Plank','Begineer',NULL,NULL,30,null,24,0)");
-
-
-        //Week 2 Day 3 :
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,3,1,'Inchworms','Begineer',NULL,NULL,45,null,12,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,3,2,'High Knees','Begineer',NULL,NULL,30,null,24,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,3,3,'Squats','Begineer',NULL,NULL,60,null,25,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,3,4,'Running in Place','Begineer',NULL,NULL,45,null,21,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,3,5,'Forward Lunges','Begineer',NULL,NULL,30,null,17,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,3,6,'Jumping Jacks','Begineer',NULL,NULL,60,null,19,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,3,7,'Knee Push-ups','Begineer',NULL,NULL,30,null,30,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,3,8,'Jump Squats','Begineer',NULL,NULL,30,null,11,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,3,9,'High Plank','Begineer',NULL,NULL,30,null,24,0)");
-
-        //Week 2 Day 4 :
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,4,1,'Inchworms','Begineer',NULL,NULL,45,null,12,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,4,2,'Knee Push-ups','Begineer',NULL,NULL,30,null,24,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,4,3,'Squats','Begineer',NULL,NULL,60,null,25,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,4,4,'Running in Place','Begineer',NULL,NULL,45,null,21,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,4,5,'Forward Lunges','Begineer',NULL,NULL,30,null,17,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,4,6,'Jumping Jacks','Begineer',NULL,NULL,60,null,19,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,4,7,'Knee Push-ups','Begineer',NULL,NULL,30,null,30,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,4,8,'Jump Squats','Begineer',NULL,NULL,30,null,11,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,4,9,'High Plank','Begineer',NULL,NULL,30,null,24,0)");
-
-        //Week 2 Day 5 :
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,5,1,'Inchworms','Begineer',NULL,NULL,45,null,12,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,5,2,'Knee Push-ups','Begineer',NULL,NULL,30,null,24,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,5,3,'Squats','Begineer',NULL,NULL,60,null,25,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,5,4,'Backward Lunges','Begineer',NULL,NULL,45,null,21,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,5,5,'Forward Lunges','Begineer',NULL,NULL,30,null,17,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,5,6,'Jumping Jacks','Begineer',NULL,NULL,60,null,19,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,5,7,'Knee Push-ups','Begineer',NULL,NULL,30,null,30,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,5,8,'Jump Squats','Begineer',NULL,NULL,30,null,11,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,5,9,'High Plank','Begineer',NULL,NULL,30,null,24,0)");
-
-        //Week 2 Day 6 :
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,6,1,'Rest Day','Begineer',NULL,NULL,0,null,0,0)");
-
-        //Week 2 Day 7 :
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,7,1,'Inchworms','Begineer',NULL,NULL,45,null,12,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,7,2,'High Knees','Begineer',NULL,NULL,30,null,24,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,7,3,'Running in Place','Begineer',NULL,NULL,45,null,21,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,7,4,'Forward Lunges','Begineer',NULL,NULL,30,null,17,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,7,5,'Jumping Jacks','Begineer',NULL,NULL,30,null,16,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,7,6,'Knee Push-ups','Begineer',NULL,NULL,30,null,30,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,7,7,'Squats','Begineer',NULL,NULL,30,null,25,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,7,8,'Jump Rope','Begineer',NULL,NULL,45,null,11,0)");
-        sqLiteDatabase.execSQL("insert into Workout VALUES(2,7,9,'High Plank','Begineer',NULL,NULL,30,null,24,0)");
+        sqLiteDatabase.execSQL("insert into Workout values('ABSTR','Ab Stretch',null,null,null,16)");
+        sqLiteDatabase.execSQL("insert into Workout values('ASL','Alternating Side Lunge',null,null,null,30)");
+        sqLiteDatabase.execSQL("insert into Workout values('AH','Ankle Hops',null,null,null,32)");
+        sqLiteDatabase.execSQL("insert into Workout values('ATPU','Ankle Tap Push-ups',null,null,null,28)");
+        sqLiteDatabase.execSQL("insert into Workout values('AC','Arm Circles',null,null,null,30)");
+        sqLiteDatabase.execSQL("insert into Workout values('BW','Bear Walk',null,null,null,22)");
+        sqLiteDatabase.execSQL("insert into Workout values('BOT','Bent Over Twist',null,null,null,30)");
+        sqLiteDatabase.execSQL("insert into Workout values('BS','Butterfly Stretch',null,null,null,32)");
+        sqLiteDatabase.execSQL("insert into Workout values('CR','Calf Raises',null,null,null,28)");
+        sqLiteDatabase.execSQL("insert into Workout values('CS','Calf Stretch',null,null,null,28)");
+        sqLiteDatabase.execSQL("insert into Workout values('CSQUAT','Cossack Squat',null,null,null,30)");
+        sqLiteDatabase.execSQL("insert into Workout values('DPUP','Decline Push Up',null,null,null,21)");
+        sqLiteDatabase.execSQL("insert into Workout values('FJSB','Forward Jump Shuffle Back',null,null,null,25)");
+        sqLiteDatabase.execSQL("insert into Workout values('FLS','Forward Leg Swings',null,null,null,24)");
+        sqLiteDatabase.execSQL("insert into Workout values('FL','Frog Jumps',null,null,null,30)");
+        sqLiteDatabase.execSQL("insert into Workout values('FBL','Front And Back Lunges',null,null,null,30)");
+        sqLiteDatabase.execSQL("insert into Workout values('GM','Good Mornings',null,null,null,14)");
+        sqLiteDatabase.execSQL("insert into Workout values('HSJC','Half Squat Jab Cross',null,null,null,19)");
+        sqLiteDatabase.execSQL("insert into Workout values('HK','High Knees',null,null,null,18)");
+        sqLiteDatabase.execSQL("insert into Workout values('PUP','Push Ups',null,null,null,23)");
+        sqLiteDatabase.execSQL("insert into Workout values('HC','Hip Circles ',null,null,null,19)");
+        sqLiteDatabase.execSQL("insert into Workout values('HFS','Hip Flexor Stretch',null,null,null,22)");
+        sqLiteDatabase.execSQL("insert into Workout values('IOJACK','In And Out Jacks',null,null,null,22)");
+        sqLiteDatabase.execSQL("insert into Workout values('IW','Inchworm ',null,null,null,24)");
+        sqLiteDatabase.execSQL("insert into Workout values('JJ','Jumping Jacks',null,null,null,28)");
+        sqLiteDatabase.execSQL("insert into Workout values('JR','Jump Rope',null,null,null,26)");
+        sqLiteDatabase.execSQL("insert into Workout values('JS','Jump Squat',null,null,null,26)");
+        sqLiteDatabase.execSQL("insert into Workout values('LK','Lunge Kicks',null,null,null,28)");
+        sqLiteDatabase.execSQL("insert into Workout values('LGES','Lunges',null,null,null,18)");
+        sqLiteDatabase.execSQL("insert into Workout values('MIP','March In Place',null,null,null,12)");
+        sqLiteDatabase.execSQL("insert into Workout values('MC','Mountain Climbers',null,null,null,16)");
+        sqLiteDatabase.execSQL("insert into Workout values('NR','Neck Rolls',null,null,null,8)");
+        sqLiteDatabase.execSQL("insert into Workout values('PLNK','Plank ',null,null,null,22)");
+        sqLiteDatabase.execSQL("insert into Workout values('RUP','Roll Up',null,null,null,18)");
+        sqLiteDatabase.execSQL("insert into Workout values('RIP','Run In Place',null,null,null,14)");
+        sqLiteDatabase.execSQL("insert into Workout values('SUP','Sit Up',null,null,null,32)");
+        sqLiteDatabase.execSQL("insert into Workout values('SPLANK','Spiderman Plank',null,null,null,32)");
+        sqLiteDatabase.execSQL("insert into Workout values('SSQUAT','Sumo Squat',null,null,null,22)");
+        sqLiteDatabase.execSQL("insert into Workout values('WSIT','Wall Sit',null,null,null,12)");
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        switch (i1)
-        {
-            case 4:
-            sqLiteDatabase.execSQL("update Workout set workout_isCompleted=1 where week_no=1 and day_no=2 ");
-        }
+//        switch (i1) {
+//            case 5:
+//                sqLiteDatabase.execSQL("update Begineer set Workout_isCompleted=0 where week_no=1 and Day_no<3");
+//
+//            case 6:
+//                sqLiteDatabase.execSQL("update Begineer set Workout_isCompleted=0 where week_no=1 and Day_no=4 and Workout_no<4");
+//
+//            case 7:
+//                sqLiteDatabase.execSQL("update Begineer set Workout_isCompleted=1 where week_no=1 and Day_no=4 and Workout_no=1");
+//                break;
+//        }
 
     }
 
@@ -183,9 +180,9 @@ public class SqliteDataClass extends SQLiteOpenHelper {
     }
 
     public int getWeekProgress(int week, String selectedCourseName) {
-        int workIsComplete=1;
+        int workIsComplete = 1;
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        Cursor cursor=sqLiteDatabase.rawQuery("Select count(workout_isCompleted) from workout where week_no=? and workout_isCompleted=? and workout_type=?",new String[]{String.valueOf(week),String.valueOf(workIsComplete),String.valueOf(selectedCourseName)},null);
+        Cursor cursor = sqLiteDatabase.rawQuery("Select count(Workout_isCompleted) from " + selectedCourseName + " where Week_no=? and Workout_isCompleted=?", new String[]{String.valueOf(week), String.valueOf(workIsComplete)}, null);
         cursor.moveToFirst();
         @SuppressLint("Range") String count = cursor.getString(cursor.getColumnIndex(cursor.getColumnName(0)));
         return Integer.parseInt(count);
@@ -194,7 +191,7 @@ public class SqliteDataClass extends SQLiteOpenHelper {
     public int getWeekDays(int weekNo, String selectedCourseName) {
 
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        Cursor cursor=sqLiteDatabase.rawQuery("Select count(*) from workout where week_no=? and workout_type=?",new String[]{String.valueOf(weekNo),String.valueOf(selectedCourseName)});
+        Cursor cursor = sqLiteDatabase.rawQuery("Select count(*) from " + selectedCourseName + " where Week_no=?", new String[]{String.valueOf(weekNo)});
 
         cursor.moveToFirst();
         @SuppressLint("Range") String count = cursor.getString(cursor.getColumnIndex(cursor.getColumnName(0)));
@@ -202,73 +199,70 @@ public class SqliteDataClass extends SQLiteOpenHelper {
     }
 
     public int getDay(int selectedCourseWeek, String selectedCourseName) {
-        SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("select * from workout where week_no=? and workout_type=?",new String[]{String.valueOf(selectedCourseWeek),selectedCourseName},null);
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery("select * from " + selectedCourseName + " where Week_no=? ", new String[]{String.valueOf(selectedCourseWeek)}, null);
 
         int days = 0;
-        if(cursor.moveToFirst())
-        {
+        if (cursor.moveToFirst()) {
             do {
-                int dayNum=cursor.getInt(1);
-                days=dayNum;
-            }while (cursor.moveToNext());
+                int dayNum = cursor.getInt(1);
+                days = dayNum;
+            } while (cursor.moveToNext());
         }
 
         return days;
     }
 
-    public int getDatProgress(int selectedCourseWeek, String selectedCourseName, int dayCount) {
-        SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("select count(workout_isCompleted) from workout where week_no=? and workout_type=? and day_no=?",new String[]{String.valueOf(selectedCourseWeek),selectedCourseName,String.valueOf(dayCount)},null);
-
+    public int getDayProgress(int selectedCourseWeek, String selectedCourseName, int dayCount) {
+        int workIsComplete = 1;
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery("Select count(Workout_isCompleted) from " + selectedCourseName + " where Week_no=? and Day_no=? and Workout_isCompleted=?", new String[]{String.valueOf(selectedCourseWeek), String.valueOf(dayCount), String.valueOf(workIsComplete)}, null);
         cursor.moveToFirst();
         @SuppressLint("Range") String count = cursor.getString(cursor.getColumnIndex(cursor.getColumnName(0)));
         return Integer.parseInt(count);
     }
 
     public ArrayList<DayData> dayArrayList(String courseName, int week, int day) {
-        SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
 
-        ArrayList<DayData>arrayList=new ArrayList<>();
+        ArrayList<DayData> arrayList = new ArrayList<>();
 
-        Cursor cursor=sqLiteDatabase.rawQuery("Select * from Workout where workout_type=? and week_no=? and day_no=?",new String[]{String.valueOf(courseName),String.valueOf(week),String.valueOf(day)});
-        if(cursor.moveToFirst()){
+        Cursor cursor = sqLiteDatabase.rawQuery("Select * from "+courseName+" Inner JOIN  Workout on Begineer.Workout_id == Workout.Workout_id where Week_no=? and Day_no=?",new String[]{String.valueOf(week),String.valueOf(day)});
+        if (cursor.moveToFirst()) {
             do {
-                int week_no=cursor.getInt(0);
-                int day_no=cursor.getInt(1);
-                int workout_no=cursor.getInt(2);
-                String workout_name=cursor.getString(3);
-                String workout_type=cursor.getString(4);
-                int workout_timer=cursor.getInt(7);
-                int workout_calories=cursor.getInt(9);
-                int workout_isCompleted=cursor.getInt(10);
+                int week_no = cursor.getInt(0);
+                int day_no = cursor.getInt(1);
+                int workout_no = cursor.getInt(2);
+                String workout_name = cursor.getString(7);
+                int workout_timer = cursor.getInt(4);
+                int workout_calories = cursor.getInt(11);
+                int workout_isCompleted = cursor.getInt(5);
 
-                arrayList.add(new DayData(week_no,day_no,workout_no,workout_timer,workout_calories,workout_isCompleted,workout_name,workout_type));
-            }while (cursor.moveToNext());
+                arrayList.add(new DayData(week_no, day_no, workout_no, workout_timer, workout_calories, workout_isCompleted, workout_name));
+            } while (cursor.moveToNext());
         }
 
-   return arrayList;
+        return arrayList;
     }
 
-    public ArrayList<DayData> getStartBtData(String courseName, int week, int day) {
-        SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
+    public ArrayList<DayData> getStartBtData(String courseName, int week, int day,int workout_complete) {
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
 
-        ArrayList<DayData>arrayList=new ArrayList<>();
+        ArrayList<DayData> arrayList = new ArrayList<>();
 
-        Cursor cursor=sqLiteDatabase.rawQuery("Select * from Workout where workout_type=? and week_no=? and day_no=? and workout_isCompleted=0",new String[]{String.valueOf(courseName),String.valueOf(week),String.valueOf(day)});
-        if(cursor.moveToFirst()){
+        Cursor cursor = sqLiteDatabase.rawQuery("Select * from "+courseName+" Inner JOIN  Workout on Begineer.Workout_id == Workout.Workout_id where Week_no=? and Day_no=? and Workout_isCompleted=?",new String[]{String.valueOf(week),String.valueOf(day),String.valueOf(workout_complete)});
+        if (cursor.moveToFirst()) {
             do {
-                int week_no=cursor.getInt(0);
-                int day_no=cursor.getInt(1);
-                int workout_no=cursor.getInt(2);
-                String workout_name=cursor.getString(3);
-                String workout_type=cursor.getString(4);
-                int workout_timer=cursor.getInt(7);
-                int workout_calories=cursor.getInt(9);
-                int workout_isCompleted=cursor.getInt(10);
+                int week_no = cursor.getInt(0);
+                int day_no = cursor.getInt(1);
+                int workout_no = cursor.getInt(2);
+                String workout_name = cursor.getString(7);
+                int workout_timer = cursor.getInt(4);
+                int workout_calories = cursor.getInt(11);
+                int workout_isCompleted = cursor.getInt(5);
 
-                arrayList.add(new DayData(week_no,day_no,workout_no,workout_timer,workout_calories,workout_isCompleted,workout_name,workout_type));
-            }while (cursor.moveToNext());
+                arrayList.add(new DayData(week_no, day_no, workout_no, workout_timer, workout_calories, workout_isCompleted, workout_name));
+            } while (cursor.moveToNext());
         }
 
         return arrayList;
@@ -276,43 +270,73 @@ public class SqliteDataClass extends SQLiteOpenHelper {
     }
 
     public boolean updateCompleteExercise(String courseName, int week, int day, int workoutno) {
-        SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
-        ContentValues contentValues=new ContentValues();
-        contentValues.put("workout_isCompleted",1);
-        int result=sqLiteDatabase.update("Workout",contentValues,"workout_type=? and week_no=? and day_no=? and workout_no=?",new String[]{String.valueOf(courseName),String.valueOf(week),String.valueOf(day),String.valueOf(workoutno)});
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("Workout_isCompleted", 1);
+        int result = sqLiteDatabase.update(courseName, contentValues, "Week_no=? and Day_no=? and Workout_no=?", new String[]{String.valueOf(week), String.valueOf(day), String.valueOf(workoutno)});
 
-        if(result==-1)
-        {
-             return false;
-        }else
-        {
+        if (result == -1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+//Update Exercises When Want to Repeat
+    public boolean updateExercise(String courseName, int week, int day) {
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("Workout_isCompleted", 0);
+        int result = sqLiteDatabase.update(courseName, contentValues, "Week_no=? and Day_no=? ", new String[]{String.valueOf(week), String.valueOf(day)});
+
+        if (result == -1) {
+            return false;
+        } else {
             return true;
         }
     }
 
     public ArrayList<DayData> singleExArrayList(String courseName, int week, int day, int workoutno) {
-            SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
 
-            ArrayList<DayData>arrayList=new ArrayList<>();
+        ArrayList<DayData> arrayList = new ArrayList<>();
 
-            Cursor cursor=sqLiteDatabase.rawQuery("Select * from Workout where workout_type=? and week_no=? and day_no=? and workout_no=?",new String[]{String.valueOf(courseName),String.valueOf(week),String.valueOf(day),String.valueOf(workoutno)});
-            if(cursor.moveToFirst()){
-                do {
-                    int week_no=cursor.getInt(0);
-                    int day_no=cursor.getInt(1);
-                    int workout_no=cursor.getInt(2);
-                    String workout_name=cursor.getString(3);
-                    String workout_type=cursor.getString(4);
-                    int workout_timer=cursor.getInt(7);
-                    int workout_calories=cursor.getInt(9);
-                    int workout_isCompleted=cursor.getInt(10);
+        Cursor cursor = sqLiteDatabase.rawQuery("Select * from "+courseName+" Inner JOIN  Workout on Begineer.Workout_id == Workout.Workout_id where Week_no=? and Day_no=? and Workout_no=?",new String[]{String.valueOf(week),String.valueOf(day),String.valueOf(workoutno)});
+        if (cursor.moveToFirst()) {
+            do {
+                int week_no = cursor.getInt(0);
+                int day_no = cursor.getInt(1);
+                int workout_no = cursor.getInt(2);
+                String workout_name = cursor.getString(7);
+                int workout_timer = cursor.getInt(4);
+                int workout_calories = cursor.getInt(11);
+                int workout_isCompleted = cursor.getInt(5);
 
-                    arrayList.add(new DayData(week_no,day_no,workout_no,workout_timer,workout_calories,workout_isCompleted,workout_name,workout_type));
-                }while (cursor.moveToNext());
-            }
+                arrayList.add(new DayData(week_no, day_no, workout_no, workout_timer, workout_calories, workout_isCompleted, workout_name));
+            } while (cursor.moveToNext());
+        }
 
-            return arrayList;
+        return arrayList;
     }
+
+    public ArrayList<Integer> getRestDay(String selectedCourseName, int selectedCourseWeek) {
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery("select * from " + selectedCourseName + " where Workout_no=0 and Week_no=?", new String[]{String.valueOf(selectedCourseWeek)});
+
+        ArrayList<Integer> restDay = new ArrayList<>();
+
+        if (cursor.moveToFirst()) {
+            do {
+                for (int i = 0; i < 100; i++) {
+                    restDay.add(cursor.getInt(1));
+                }
+            } while (cursor.moveToNext());
+        }
+
+        return restDay;
+
+    }
+
 
 //    public ArrayList<WeeksData> getWeeklyData(String selectedCourseName) {
 //        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
@@ -333,4 +357,6 @@ public class SqliteDataClass extends SQLiteOpenHelper {
 //        }
 //        return resultList;
 //    }
+
+
 }

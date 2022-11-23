@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.homeworkout.R;
+import com.example.homeworkout.modelData.SelectCourseModel;
 
 import java.util.ArrayList;
 

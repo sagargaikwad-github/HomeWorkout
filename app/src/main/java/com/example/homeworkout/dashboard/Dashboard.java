@@ -1,15 +1,9 @@
 package com.example.homeworkout.dashboard;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -19,9 +13,11 @@ import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.example.homeworkout.R;
+import com.example.homeworkout.fragment.ExploreFragment;
+import com.example.homeworkout.fragment.ReportFragment;
+import com.example.homeworkout.fragment.SettingsFragment;
+import com.example.homeworkout.fragment.TrainingFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import java.util.ArrayList;
 
 public class Dashboard extends AppCompatActivity implements View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener {
     Toolbar toolbar;

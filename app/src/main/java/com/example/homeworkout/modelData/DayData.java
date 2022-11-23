@@ -1,10 +1,10 @@
-package com.example.homeworkout.dashboard;
+package com.example.homeworkout.modelData;
 
 public class DayData {
     int weekno,dayno,workoutno,workouttimer,calories,iscompleted;
-    String workoutname,workoutype;
+    String workoutname;
 
-    public DayData(int weekno, int dayno, int workoutno, int workouttimer, int calories, int iscompleted, String workoutname, String workoutype) {
+    public DayData(int weekno, int dayno, int workoutno, int workouttimer, int calories, int iscompleted, String workoutname) {
         this.weekno = weekno;
         this.dayno = dayno;
         this.workoutno = workoutno;
@@ -12,7 +12,7 @@ public class DayData {
         this.calories = calories;
         this.iscompleted = iscompleted;
         this.workoutname = workoutname;
-        this.workoutype = workoutype;
+
     }
 
     public int getWeekno() {
@@ -71,11 +71,5 @@ public class DayData {
         this.workoutname = workoutname;
     }
 
-    public String getWorkoutype() {
-        return workoutype;
-    }
 
-    public void setWorkoutype(String workoutype) {
-        this.workoutype = workoutype;
-    }
 }

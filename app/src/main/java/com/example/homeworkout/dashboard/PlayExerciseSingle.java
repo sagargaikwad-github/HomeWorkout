@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.homeworkout.R;
+import com.example.homeworkout.modelData.DayData;
 import com.example.homeworkout.sqLiteData.SqliteDataClass;
 
 
