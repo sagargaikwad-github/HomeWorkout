@@ -237,8 +237,9 @@ public class SqliteDataClass extends SQLiteOpenHelper {
                 int workout_timer = cursor.getInt(4);
                 int workout_calories = cursor.getInt(11);
                 int workout_isCompleted = cursor.getInt(5);
+                String workout_id = cursor.getString(3);
 
-                arrayList.add(new DayData(week_no, day_no, workout_no, workout_timer, workout_calories, workout_isCompleted, workout_name));
+                arrayList.add(new DayData(week_no, day_no, workout_no, workout_timer, workout_calories, workout_isCompleted, workout_name,workout_id));
             } while (cursor.moveToNext());
         }
 
@@ -261,7 +262,9 @@ public class SqliteDataClass extends SQLiteOpenHelper {
                 int workout_calories = cursor.getInt(11);
                 int workout_isCompleted = cursor.getInt(5);
 
-                arrayList.add(new DayData(week_no, day_no, workout_no, workout_timer, workout_calories, workout_isCompleted, workout_name));
+                String workout_id=cursor.getString(3);
+
+                arrayList.add(new DayData(week_no, day_no, workout_no, workout_timer, workout_calories, workout_isCompleted, workout_name,workout_id));
             } while (cursor.moveToNext());
         }
 
@@ -311,8 +314,9 @@ public class SqliteDataClass extends SQLiteOpenHelper {
                 int workout_timer = cursor.getInt(4);
                 int workout_calories = cursor.getInt(11);
                 int workout_isCompleted = cursor.getInt(5);
+                String workout_id=cursor.getString(3);
 
-                arrayList.add(new DayData(week_no, day_no, workout_no, workout_timer, workout_calories, workout_isCompleted, workout_name));
+                arrayList.add(new DayData(week_no, day_no, workout_no, workout_timer, workout_calories, workout_isCompleted, workout_name,workout_id));
             } while (cursor.moveToNext());
         }
 

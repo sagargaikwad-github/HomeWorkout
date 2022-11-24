@@ -1,5 +1,6 @@
 package com.example.homeworkout.dashboard;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -8,17 +9,25 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.bumptech.glide.Glide;
 import com.example.homeworkout.R;
 import com.example.homeworkout.modelData.DayData;
 import com.example.homeworkout.sqLiteData.SqliteDataClass;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class PlayExercise extends AppCompatActivity {
     String CourseName;
@@ -36,7 +45,9 @@ public class PlayExercise extends AppCompatActivity {
     CountDownTimer countDownTimer;
     ImageView nextBTN;
     SqliteDataClass sqliteDataClass;
-
+    TextToSpeech textToSpeech;
+    FirebaseDatabase firebaseDatabase;
+    TextToSpeechClass textToSpeechClass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,11 +91,33 @@ public class PlayExercise extends AppCompatActivity {
             alertdialog.setCancelable(false);
             alertdialog.show();
         } else {
+            String text="Now "+arrayList.get(0).getWorkoutname() ;
+            textToSpeechClass=new TextToSpeechClass(textToSpeech,PlayExercise.this,text);
             startPlay();
         }
     }
 
     private void startPlay() {
+
+        firebaseDatabase=firebaseDatabase.getInstance();
+        DatabaseReference reference=firebaseDatabase.getReference();
+        DatabaseReference getImage=reference.child("Image").child(arrayList.get(0).getWorkout_id());
+        getImage.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                ImageView imageView=findViewById(R.id.imageView);
+                String limk=snapshot.getValue(String.class);
+                Glide.with(getApplicationContext()).load(limk).into(imageView);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(PlayExercise.this, "Image Null", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
+
         Workoutno = arrayList.get(0).getWorkoutno();
         workoutNameTV.setText(arrayList.get(0).getWorkoutname());
 
@@ -123,6 +156,7 @@ public class PlayExercise extends AppCompatActivity {
                 nextActivity();
             }
         });
+
     }
 
     private void nextActivity() {
@@ -143,6 +177,11 @@ public class PlayExercise extends AppCompatActivity {
                 seconds = (int) (l / 1000);
                 TimerTV.setText(String.valueOf(seconds));
                 TimeLeft = seconds;
+                if(seconds==11)
+                {
+                    String text="10 Seconds Left";
+                    textToSpeechClass=new TextToSpeechClass(textToSpeech,PlayExercise.this,text);
+                 }
             }
 
             @Override

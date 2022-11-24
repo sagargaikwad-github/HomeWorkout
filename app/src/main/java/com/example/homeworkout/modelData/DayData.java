@@ -1,10 +1,14 @@
 package com.example.homeworkout.modelData;
 
+import android.speech.tts.TextToSpeech;
+
 public class DayData {
     int weekno,dayno,workoutno,workouttimer,calories,iscompleted;
     String workoutname;
+    String workout_id;
 
-    public DayData(int weekno, int dayno, int workoutno, int workouttimer, int calories, int iscompleted, String workoutname) {
+
+    public DayData(int weekno, int dayno, int workoutno, int workouttimer, int calories, int iscompleted, String workoutname, String workout_id) {
         this.weekno = weekno;
         this.dayno = dayno;
         this.workoutno = workoutno;
@@ -12,7 +16,7 @@ public class DayData {
         this.calories = calories;
         this.iscompleted = iscompleted;
         this.workoutname = workoutname;
-
+        this.workout_id = workout_id;
     }
 
     public int getWeekno() {
@@ -71,5 +75,11 @@ public class DayData {
         this.workoutname = workoutname;
     }
 
+    public String getWorkout_id() {
+        return workout_id;
+    }
 
+    public void setWorkout_id(String workout_id) {
+        this.workout_id = workout_id;
+    }
 }

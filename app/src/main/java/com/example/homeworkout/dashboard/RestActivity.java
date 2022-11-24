@@ -5,12 +5,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.speech.tts.TextToSpeech;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.homeworkout.R;
+
+import java.util.Locale;
 
 public class RestActivity extends AppCompatActivity {
     LinearLayout RestAddBTN,RestMinusBTN;
@@ -22,6 +25,9 @@ public class RestActivity extends AppCompatActivity {
 
     int Time;
     int TimeLeft;
+
+    TextToSpeechClass textToSpeechClass;
+    TextToSpeech textToSpeech;
 
 
     CountDownTimer countDownTimer;
@@ -41,11 +47,27 @@ public class RestActivity extends AppCompatActivity {
         week = b.getInt("week");
         day = b.getInt("day");
 
+//        textToSpeech=new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+//            @Override
+//            public void onInit(int i) {
+//                if(i!=TextToSpeech.ERROR)
+//                {
+//                    textToSpeech.setLanguage(Locale.UK);
+//                    PlaySound();
+//                }
+//            }
+//        });
+
+
+
 
         Time=10;
+        String Text="Take a Rest For "+Time+" Seconds";
+        textToSpeechClass=new TextToSpeechClass(textToSpeech,this,Text);
+
         RestTV.setText(Time+" sec");
 
-       countDownTimer();
+        countDownTimer();
 
         RestAddBTN.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +75,8 @@ public class RestActivity extends AppCompatActivity {
                  countDownTimer.cancel();
                  Time=TimeLeft+5;
                  countDownTimer();
+
+
             }
         });
 
@@ -64,7 +88,11 @@ public class RestActivity extends AppCompatActivity {
         });
 
 
+
     }
+
+
+
 
     private void countDownTimer() {
         countDownTimer=new CountDownTimer(Time*1000,1000) {
@@ -73,6 +101,11 @@ public class RestActivity extends AppCompatActivity {
                 seconds = (int) (l / 1000);
                 RestTV.setText(String.valueOf(seconds));
                 TimeLeft= seconds;
+                if(TimeLeft==2)
+                {
+                    String Text="Get Ready For Next Exercise";
+                    textToSpeechClass=new TextToSpeechClass(textToSpeech,RestActivity.this,Text);
+                }
             }
 
             @Override
@@ -90,9 +123,14 @@ public class RestActivity extends AppCompatActivity {
         intent.putExtra("day",day);
         startActivity(intent);
 
-
         countDownTimer.cancel();
         this.finish();
     }
 
+    @Override
+    public void onBackPressed() {
+        countDownTimer.cancel();
+        super.onBackPressed();
+        this.finish();
+    }
 }

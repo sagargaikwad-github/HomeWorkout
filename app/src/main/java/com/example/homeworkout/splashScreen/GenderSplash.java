@@ -226,7 +226,6 @@ public class GenderSplash extends AppCompatActivity {
 
 
 
-
             GenderSplash.this.finish();
 
 
