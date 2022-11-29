@@ -61,7 +61,8 @@ public class RestActivity extends AppCompatActivity {
 
 
 
-        Time=10;
+        //Time=10;
+        Time=1; //For Testing we take 1 sec
         String Text="Take a Rest For "+Time+" Seconds";
         textToSpeechClass=new TextToSpeechClass(textToSpeech,this,Text);
 
@@ -91,9 +92,6 @@ public class RestActivity extends AppCompatActivity {
 
     }
 
-
-
-
     private void countDownTimer() {
         countDownTimer=new CountDownTimer(Time*1000,1000) {
             @Override
@@ -116,7 +114,6 @@ public class RestActivity extends AppCompatActivity {
     }
 
     private void nextActivity() {
-
         Intent intent=new Intent(this,PlayExercise.class);
         intent.putExtra("CourseName",CourseName);
         intent.putExtra("week",week);

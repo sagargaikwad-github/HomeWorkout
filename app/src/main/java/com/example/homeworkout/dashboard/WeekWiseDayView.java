@@ -79,8 +79,6 @@ public class WeekWiseDayView extends AppCompatActivity {
 
         sqliteDataClass=new SqliteDataClass(this);
 
-
-
     }
 
     private void ButtonClicks() {

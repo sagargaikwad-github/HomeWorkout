@@ -77,7 +77,7 @@ public class PlayExercise extends AppCompatActivity {
             alertdialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    sqliteDataClass.updateExercise(CourseName, week, day);
+                    sqliteDataClass.updateCompleteExercise(CourseName, week, day);
                     arrayList = sqliteDataClass.getStartBtData(CourseName, week, day, 0);
                     startPlay();
                 }
@@ -91,6 +91,7 @@ public class PlayExercise extends AppCompatActivity {
             alertdialog.setCancelable(false);
             alertdialog.show();
         } else {
+
             String text="Now "+arrayList.get(0).getWorkoutname() ;
             textToSpeechClass=new TextToSpeechClass(textToSpeech,PlayExercise.this,text);
             startPlay();
@@ -101,7 +102,7 @@ public class PlayExercise extends AppCompatActivity {
 
         firebaseDatabase=firebaseDatabase.getInstance();
         DatabaseReference reference=firebaseDatabase.getReference();
-        DatabaseReference getImage=reference.child("Image").child(arrayList.get(0).getWorkout_id());
+        DatabaseReference getImage=reference.child("Images").child(arrayList.get(0).getWorkout_id());
         getImage.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -112,10 +113,8 @@ public class PlayExercise extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(PlayExercise.this, "Image Null", Toast.LENGTH_SHORT).show();
-
             }
         });
-
 
 
         Workoutno = arrayList.get(0).getWorkoutno();
@@ -160,6 +159,8 @@ public class PlayExercise extends AppCompatActivity {
     }
 
     private void nextActivity() {
+         sqliteDataClass.updateExercise(CourseName, week, day, Workoutno);
+
         Intent intent = new Intent(PlayExercise.this, RestActivity.class);
         intent.putExtra("CourseName", CourseName);
         intent.putExtra("week", week);
@@ -186,7 +187,6 @@ public class PlayExercise extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                sqliteDataClass.updateCompleteExercise(CourseName, week, day, Workoutno);
                 nextActivity();
             }
         }.start();
@@ -206,6 +206,5 @@ public class PlayExercise extends AppCompatActivity {
 
         }
         this.finish();
-
     }
 }

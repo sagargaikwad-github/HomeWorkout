@@ -3,7 +3,6 @@ package com.example.homeworkout.modelData;
 public class WeeksData {
     int Week;
 
-
     public WeeksData(int week) {
         Week = week;
 

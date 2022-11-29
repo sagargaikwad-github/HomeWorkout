@@ -36,9 +36,9 @@ public class TrainingFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         courseModels.clear();
-        courseModels.add(new SelectCourseModel(1,R.drawable.boy,"Begineer"));
-        courseModels.add(new SelectCourseModel(2,R.drawable.girl,"Intermediate"));
-        courseModels.add(new SelectCourseModel(3,R.drawable.boy,"Advanced"));
+        courseModels.add(new SelectCourseModel(1,R.drawable.begineer,"Begineer","Perfect for below 18 years"));
+        courseModels.add(new SelectCourseModel(2,R.drawable.intermediate,"Intermediate","Above 18 but did you finish Beginner ?"));
+        courseModels.add(new SelectCourseModel(3,R.drawable.advanced,"Advanced","Hey Above 18, you also start From Here.."));
 
     }
 

@@ -49,33 +49,6 @@ public class DayAdapter extends RecyclerView.Adapter<DayAdapter.holder> {
 
 
 
-//        FileInputStream fis = null;
-//        try {
-//            fis = context.openFileInput("Photo1");
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//        InputStreamReader inputStreamReader =
-//                new InputStreamReader(fis, StandardCharsets.UTF_8);
-//        StringBuilder stringBuilder = new StringBuilder();
-//        try (BufferedReader reader = new BufferedReader(inputStreamReader)) {
-//            String line = reader.readLine();
-//            while (line != null) {
-//                stringBuilder.append(line);
-//                line = reader.readLine();
-//
-//            }
-//        } catch (IOException e) {
-//            // Error occurred when opening raw file for reading.
-//        } finally {
-//            String contents = stringBuilder.toString();
-//
-//
-//            //holder.day_explay_iv.setImageResource(Integer.parseInt(contents));
-//        }
-
-
-
         holder.day_explay_iv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

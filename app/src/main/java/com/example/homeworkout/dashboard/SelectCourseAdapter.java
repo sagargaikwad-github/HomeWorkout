@@ -12,8 +12,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.homeworkout.R;
 import com.example.homeworkout.modelData.SelectCourseModel;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.installations.remote.FirebaseInstallationServiceClient;
 
 import java.util.ArrayList;
 
@@ -38,8 +45,10 @@ public class SelectCourseAdapter extends RecyclerView.Adapter<SelectCourseAdapte
     @Override
     public void onBindViewHolder(@NonNull holder holder, @SuppressLint("RecyclerView") int position) {
 
-        holder.courseIV.setImageResource(courseList.get(position).getCourseImage());
+
         holder.courseTV.setText(courseList.get(position).getCourseName());
+        holder.courseIV.setImageResource(courseList.get(position).getCourseImage());
+        holder.coureDesc.setText(courseList.get(position).getCourseDesc());
 
         holder.courseTV.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,12 +70,13 @@ public class SelectCourseAdapter extends RecyclerView.Adapter<SelectCourseAdapte
 
     class holder extends RecyclerView.ViewHolder {
         ImageView courseIV;
-        TextView courseTV;
+        TextView courseTV,coureDesc;
         public holder(@NonNull View itemView) {
             super(itemView);
 
             courseIV=itemView.findViewById(R.id.choose_course_rv_item_IV);
             courseTV=itemView.findViewById(R.id.choose_course_rv_item_TV);
+            coureDesc=itemView.findViewById(R.id.choose_course_rv_item_description_TV);
         }
     }
 

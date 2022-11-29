@@ -4,37 +4,65 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp">
+     android:padding="5dp"
+    android:background="#E3DCDC">
 
-
-
+    <!--    -->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        android:layout_margin="3dp"
+        android:background="#E3DCDC"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout2">
+        app:layout_constraintTop_toTopOf="parent">
 
         <RelativeLayout
             android:id="@+id/ClickRL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#E3DCDC"
-            android:padding="4dp">
+            android:padding="10dp">
+            <!--     color bg       #E3DCDC-->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/course_item_dayText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/balsamiq_sans_bold"
+                    android:text="Day"
+                    android:textSize="19sp" />
+
+                <TextView
+                    android:id="@+id/course_item_dayno"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/balsamiq_sans_bold"
+                    android:text="1 "
+                    android:textSize="19sp" />
+            </LinearLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/ll"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-
-                android:gravity="center_horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
                 android:orientation="vertical">
 
                 <com.google.android.material.progressindicator.CircularProgressIndicator
                     android:id="@+id/ProgressIndicator"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    app:indicatorSize="90dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:indicatorSize="40dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -44,34 +72,36 @@
                     android:id="@+id/progress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0 %"
-                    android:textSize="22sp"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="@+id/ProgressIndicator"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/ProgressIndicator"
                     app:layout_constraintTop_toTopOf="@+id/ProgressIndicator" />
+
+                <ImageView
+                    android:id="@+id/ProgressIV"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_lock_vector"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"></ImageView>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_marginLeft="12dp"
-                android:layout_toRightOf="@id/ll"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/course_item_dayno"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/balsamiq_sans_bold"
-                    android:text="Day 1"
-                    android:textSize="22sp" />
-
-            </LinearLayout>
-
         </RelativeLayout>
+
+        <Button
+            android:id="@+id/ContinueBTN"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="18dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginRight="18dp"
+            android:text="Continue"
+            android:visibility="gone"
+            android:textColor="@color/white"
+            app:cornerRadius="8dp"></Button>
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

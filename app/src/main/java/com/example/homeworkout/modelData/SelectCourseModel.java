@@ -4,11 +4,13 @@ public class SelectCourseModel {
     int courseID;
     int courseImage;
     String courseName;
+    String courseDesc;
 
-    public SelectCourseModel(int courseID, int courseImage, String courseName) {
+    public SelectCourseModel(int courseID, int courseImage, String courseName, String courseDesc) {
         this.courseID = courseID;
         this.courseImage = courseImage;
         this.courseName = courseName;
+        this.courseDesc = courseDesc;
     }
 
     public int getCourseID() {
@@ -33,5 +35,13 @@ public class SelectCourseModel {
 
     public void setCourseName(String courseName) {
         this.courseName = courseName;
+    }
+
+    public String getCourseDesc() {
+        return courseDesc;
+    }
+
+    public void setCourseDesc(String courseDesc) {
+        this.courseDesc = courseDesc;
     }
 }

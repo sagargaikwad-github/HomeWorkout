@@ -32,9 +32,9 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        toolbar=findViewById(R.id.action_bar);
-        action_bar_menu=findViewById(R.id.action_bar_menu);
-        selectCourseRV=findViewById(R.id.selectCourseRV);
+        toolbar = findViewById(R.id.action_bar);
+        action_bar_menu = findViewById(R.id.action_bar_menu);
+        selectCourseRV = findViewById(R.id.selectCourseRV);
         navigationView = findViewById(R.id.navigation);
 
 
@@ -60,12 +60,11 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
 
     @Override
     public void onClick(View view) {
-        switch (view.getId())
-        {
+        switch (view.getId()) {
             case R.id.action_bar_menu:
                 Toast.makeText(this, "Clicked", Toast.LENGTH_SHORT).show();
                 break;
-              }
+        }
 
     }
 
@@ -74,26 +73,23 @@ public class Dashboard extends AppCompatActivity implements View.OnClickListener
     protected void onResume() {
         super.onResume();
 
-
-
     }
 
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId())
-        {
+        switch (item.getItemId()) {
             case R.id.nav_training:
-                getSupportFragmentManager().beginTransaction().replace(R.id.content,trainingFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content, trainingFragment).commit();
                 return true;
             case R.id.nav_explore:
-                getSupportFragmentManager().beginTransaction().replace(R.id.content,exploreFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content, exploreFragment).commit();
                 return true;
             case R.id.nav_report:
-                getSupportFragmentManager().beginTransaction().replace(R.id.content,reportFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content, reportFragment).commit();
                 return true;
             case R.id.nav_setting:
-                getSupportFragmentManager().beginTransaction().replace(R.id.content,settingsFragment).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content, settingsFragment).commit();
                 return true;
 
         }

@@ -31,8 +31,6 @@ public class DayView extends AppCompatActivity {
     TextView caloriesBurnedTV,totalTimeTV;
     LinearLayout startLL;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

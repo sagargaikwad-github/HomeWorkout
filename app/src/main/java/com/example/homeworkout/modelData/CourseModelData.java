@@ -2,7 +2,6 @@ package com.example.homeworkout.modelData;
 
 public class CourseModelData {
     int Workout_day;
-
     int Workout_progress;
 
     public CourseModelData(int workout_day , int workout_progress) {
