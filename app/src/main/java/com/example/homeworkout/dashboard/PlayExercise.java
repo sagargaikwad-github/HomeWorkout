@@ -33,7 +33,8 @@ public class PlayExercise extends AppCompatActivity {
     String CourseName;
     int week, day;
     ArrayList<DayData> arrayList = new ArrayList<>();
-    TextView TimerTV, workoutNameTV;
+    ArrayList<DayData> checkForRestData = new ArrayList<>();
+    TextView TimerTV, workoutNameTV,NextExerciseTV;
     int Workoutno;
     int Time;
 
@@ -47,7 +48,7 @@ public class PlayExercise extends AppCompatActivity {
     SqliteDataClass sqliteDataClass;
     TextToSpeech textToSpeech;
     FirebaseDatabase firebaseDatabase;
-    TextToSpeechClass textToSpeechClass;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +59,7 @@ public class PlayExercise extends AppCompatActivity {
         playPause_BTN = findViewById(R.id.playPause_BTN);
         nextBTN = findViewById(R.id.nextBTN);
         workoutNameTV = findViewById(R.id.workoutNameTV);
-
+        NextExerciseTV=findViewById(R.id.NextExerciseTV);
 
         Bundle b = getIntent().getExtras();
         CourseName = b.getString("CourseName");
@@ -67,60 +68,77 @@ public class PlayExercise extends AppCompatActivity {
 
 
         sqliteDataClass = new SqliteDataClass(this);
-        //when making a database we assigning a workout incomelete to 0 means workout_isComplete data are 0. it is a pending workout
+        //when making a database we assigning a workout incomplete to 0 means workout_isComplete data are 0. it is a pending workout
         arrayList = sqliteDataClass.getStartBtData(CourseName, week, day, 0);
 
 
-        if (arrayList.isEmpty()) {
-            AlertDialog.Builder alertdialog = new AlertDialog.Builder(this);
-            alertdialog.setTitle("Do You Want to repeat This Set ?");
-            alertdialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    sqliteDataClass.updateCompleteExercise(CourseName, week, day);
-                    arrayList = sqliteDataClass.getStartBtData(CourseName, week, day, 0);
-                    startPlay();
-                }
-            });
-            alertdialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    onBackPressed();
-                }
-            });
-            alertdialog.setCancelable(false);
-            alertdialog.show();
-        } else {
+        if(arrayList.size()<2)
+        {
+            NextExerciseTV.setText("This Day End's In");
+        }
 
-            String text="Now "+arrayList.get(0).getWorkoutname() ;
-            textToSpeechClass=new TextToSpeechClass(textToSpeech,PlayExercise.this,text);
+
+        if (arrayList.isEmpty()) {
+            repeatSet("Do you want to Restart this Set ?");
+        } else {
+            textToSpeech = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+                @Override
+                public void onInit(int i) {
+                    if (i != TextToSpeech.ERROR) {
+                        textToSpeech.setLanguage(Locale.UK);
+                    }
+                }
+            });
             startPlay();
+
         }
     }
 
-    private void startPlay() {
+    private void repeatSet(String dialogTitle) {
+        AlertDialog.Builder alertdialog = new AlertDialog.Builder(this);
+        alertdialog.setTitle(dialogTitle);
+        alertdialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                sqliteDataClass.updateCompleteExercise(CourseName, week, day);
+                arrayList = sqliteDataClass.getStartBtData(CourseName, week, day, 0);
+                startPlay();
+            }
+        });
+        alertdialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                onBackPressed();
+            }
+        });
+        alertdialog.setCancelable(false);
+        alertdialog.show();
+    }
 
-        firebaseDatabase=firebaseDatabase.getInstance();
-        DatabaseReference reference=firebaseDatabase.getReference();
-        DatabaseReference getImage=reference.child("Images").child(arrayList.get(0).getWorkout_id());
+    private void startPlay() {
+        textToSpeech.speak("Start PLAY",TextToSpeech.QUEUE_FLUSH,null);
+
+        firebaseDatabase = firebaseDatabase.getInstance();
+        DatabaseReference reference = firebaseDatabase.getReference();
+        DatabaseReference getImage = reference.child("Images").child(arrayList.get(0).getWorkout_id());
         getImage.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ImageView imageView=findViewById(R.id.imageView);
-                String limk=snapshot.getValue(String.class);
+                ImageView imageView = findViewById(R.id.imageView);
+                String limk = snapshot.getValue(String.class);
                 Glide.with(getApplicationContext()).load(limk).into(imageView);
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(PlayExercise.this, "Image Null", Toast.LENGTH_SHORT).show();
             }
         });
 
-
         Workoutno = arrayList.get(0).getWorkoutno();
         workoutNameTV.setText(arrayList.get(0).getWorkoutname());
 
-       // sqliteDataClass.updateCompleteExercise(CourseName, week, day, Workoutno);
+        // sqliteDataClass.updateCompleteExercise(CourseName, week, day, Workoutno);
 
         if (Playstate == 0) {
             playPause_BTN.setImageResource(R.drawable.ic_play_vector);
@@ -159,16 +177,29 @@ public class PlayExercise extends AppCompatActivity {
     }
 
     private void nextActivity() {
-         sqliteDataClass.updateExercise(CourseName, week, day, Workoutno);
+        sqliteDataClass.updateExercise(CourseName, week, day, Workoutno);
 
-        Intent intent = new Intent(PlayExercise.this, RestActivity.class);
-        intent.putExtra("CourseName", CourseName);
-        intent.putExtra("week", week);
-        intent.putExtra("day", day);
-        startActivity(intent);
+        checkForRestData = sqliteDataClass.getStartBtData(CourseName, week, day, 0);
+        if (checkForRestData.isEmpty()) {
+            Intent intent=new Intent(PlayExercise.this,Congrats_SetComplete.class);
+            intent.putExtra("CourseName", CourseName);
+            intent.putExtra("week", week);
+            intent.putExtra("day", day);
 
-        countDownTimer.cancel();
-        this.finish();
+            startActivity(intent);
+            this.finish();
+        } else {
+            Intent intent = new Intent(PlayExercise.this, RestActivity.class);
+            intent.putExtra("CourseName", CourseName);
+            intent.putExtra("week", week);
+            intent.putExtra("day", day);
+            startActivity(intent);
+
+            countDownTimer.cancel();
+            this.finish();
+        }
+
+
     }
 
     private void countdown(int time) {
@@ -178,11 +209,10 @@ public class PlayExercise extends AppCompatActivity {
                 seconds = (int) (l / 1000);
                 TimerTV.setText(String.valueOf(seconds));
                 TimeLeft = seconds;
-                if(seconds==11)
-                {
-                    String text="10 Seconds Left";
-                    textToSpeechClass=new TextToSpeechClass(textToSpeech,PlayExercise.this,text);
-                 }
+                if (seconds == 11) {
+                    String text = "10 Seconds Left";
+                    textToSpeech.speak(text,TextToSpeech.QUEUE_FLUSH,null);
+                }
             }
 
             @Override
@@ -206,5 +236,6 @@ public class PlayExercise extends AppCompatActivity {
 
         }
         this.finish();
+
     }
 }

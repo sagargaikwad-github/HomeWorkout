@@ -74,12 +74,12 @@
             android:textSize="30sp" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/NextExerciseTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Next Exercise In"
-            android:textSize="16sp" />
+            android:textSize="19sp" />
     </LinearLayout>
 
 

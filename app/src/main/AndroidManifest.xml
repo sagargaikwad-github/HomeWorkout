@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.homeworkout">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -16,15 +16,23 @@
         android:theme="@style/Theme.SplashScreen"
         tools:targetApi="31">
         <activity
+            android:name=".dashboard.Congrats_SetComplete"
+            android:exported="true" >
+
+        </activity>
+        <activity
+            android:name=".dashboard.CompletedWorkoutDayView"
+            android:exported="false" />
+        <activity
             android:name=".dashboard.PlayExerciseSingle"
             android:exported="false" />
         <activity
             android:name=".dashboard.RestActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".dashboard.PlayExercise"
             android:exported="true"
-            android:theme="@style/Theme.SplashScreen"></activity>
+            android:theme="@style/Theme.SplashScreen" />
         <activity
             android:name=".dashboard.WeeksDisplay"
             android:exported="false"

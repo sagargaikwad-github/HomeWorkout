@@ -5,104 +5,166 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:weightSum="2"
     tools:context=".dashboard.RestActivity">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:gravity="center"
-        android:text="Take a Break"
-        android:fontFamily="@font/balsamiq_sans_bold"
-        android:textColor="@color/black"
-        android:textSize="32sp"></TextView>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="100dp"
+        android:layout_weight="1"
         android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/balsamiq_sans_bold"
+            android:gravity="center"
+            android:text="Take a Break"
+            android:textColor="@color/black"
+            android:textSize="32sp"></TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/RestMinusBTN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/box_bg"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_substract_vector"></ImageView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/balsamiq_sans_bold"
+                    android:text="5 Sec"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"></TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/RestTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/balsamiq_sans_bold"
+                    android:padding="10dp"
+                    android:text="5"
+                    android:textColor="@color/black"
+                    android:textSize="32sp"></TextView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/RestAddBTN"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/box_bg"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:padding="5dp"
+                    android:src="@drawable/ic_add_vector"></ImageView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/balsamiq_sans_bold"
+                    android:text="5 Sec"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"></TextView>
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/RestSkipBTN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/skip_bg"
+            android:fontFamily="@font/balsamiq_sans_bold"
+            android:padding="8dp"
+            android:text="skip"
+            android:textColor="@color/black"
+            android:textSize="22sp"></TextView>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
+        android:layout_weight="1"
         android:orientation="horizontal">
 
         <LinearLayout
-            android:id="@+id/RestMinusBTN"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/box_bg"
-            android:gravity="center"
-            android:orientation="vertical"
+            android:layout_gravity="bottom"
+            android:layout_margin="4dp"
+            android:background="@color/red_color_light"
+            android:orientation="horizontal"
             android:padding="10dp">
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:padding="5dp"
-                android:src="@drawable/ic_substract_vector"></ImageView>
+                android:id="@+id/Rest_Next_IV"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="4dp"></ImageView>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/balsamiq_sans_bold"
-                android:text="5 Sec"
-                android:textColor="@color/black"
-                android:textSize="20sp"></TextView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Next Workout : "
+                    android:textColor="@color/white"
+                    android:textSize="19sp"></TextView>
+
+                <TextView
+                    android:id="@+id/Rest_Next_TV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom"
+                    android:text="Jumping Jacks"
+                    android:textColor="@color/white"
+                    android:textSize="26sp"></TextView>
+            </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/RestTV"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/balsamiq_sans_bold"
-                android:padding="10dp"
-                android:text="5"
-                android:textColor="@color/black"
-                android:textSize="32sp"></TextView>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/RestAddBTN"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/box_bg"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="10dp">
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:padding="5dp"
-                android:src="@drawable/ic_add_vector"></ImageView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/balsamiq_sans_bold"
-                android:text="5 Sec"
-                android:textColor="@color/black"
-                android:textSize="20sp"></TextView>
-        </LinearLayout>
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/RestSkipBTN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/skip_bg"
-        android:fontFamily="@font/balsamiq_sans_bold"
-        android:padding="8dp"
-        android:text="skip"
-        android:textColor="@color/black"
-        android:textSize="22sp"></TextView>
+
 </LinearLayout>

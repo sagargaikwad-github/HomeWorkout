@@ -81,7 +81,7 @@ public class SqliteDataClass extends SQLiteOpenHelper {
 
 //Week 1 Day 5:
         //Rest Day
-        sqLiteDatabase.execSQL("insert into Begineer values(1,5,0,'',0,1)");
+        sqLiteDatabase.execSQL("insert into Begineer values(1,5,0,'',0,-2)");
 
 //Week 1 Day 6:
         sqLiteDatabase.execSQL("insert into Begineer values(1,6,1,'RIP',2,0)");
@@ -122,7 +122,7 @@ public class SqliteDataClass extends SQLiteOpenHelper {
 
 //Week 2 Day 3:
 //Rest Day
-        sqLiteDatabase.execSQL("insert into Begineer values(2,3,0,'',0,-1)");
+        sqLiteDatabase.execSQL("insert into Begineer values(2,3,0,'',0,-2)");
 
 //Week 2 Day 4:
         sqLiteDatabase.execSQL("insert into Begineer values(2,4,1,'JJ',2,-1)");
@@ -164,7 +164,7 @@ public class SqliteDataClass extends SQLiteOpenHelper {
 
 //Week 3 Day 1:
 //Rest Day:
-        sqLiteDatabase.execSQL("insert into Begineer values(3,1,0,'',0,-1)");
+        sqLiteDatabase.execSQL("insert into Begineer values(3,1,0,'',0,-2)");
 
 //Week 3 Day 2:
         sqLiteDatabase.execSQL("insert into Begineer values(3,2,1,'RIP',2,-1)");
@@ -195,7 +195,7 @@ public class SqliteDataClass extends SQLiteOpenHelper {
 
 //Week 3 Day 5:
 //Rest Day
-        sqLiteDatabase.execSQL("insert into Begineer values(3,5,0,'',0,-1)");
+        sqLiteDatabase.execSQL("insert into Begineer values(3,5,0,'',0,-2)");
 
 //Week 3 Day 6:
         sqLiteDatabase.execSQL("insert into Begineer values(3,6,1,'RIP',2,-1)");
@@ -235,7 +235,7 @@ public class SqliteDataClass extends SQLiteOpenHelper {
 
 //Week 4 Day 3:
 //Rest Day:
-        sqLiteDatabase.execSQL("insert into Begineer values(4,3,0,'',0,-1)");
+        sqLiteDatabase.execSQL("insert into Begineer values(4,3,0,'',0,-2)");
 
 //Week 4 Day 4:
         sqLiteDatabase.execSQL("insert into Begineer values(4,4,1,'RIP',2,-1)");
@@ -276,9 +276,7 @@ public class SqliteDataClass extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("insert into Begineer values(4,7,6,'SUP',2,-1)");
         sqLiteDatabase.execSQL("insert into Begineer values(4,7,7,'SPLANK',2,-1)");
 
-        sqLiteDatabase.execSQL("update Begineer set Workout_isCompleted =1 where Week_no=1 and Day_no<7");
-
-
+        sqLiteDatabase.execSQL("update Begineer set Workout_isCompleted =1 where Week_no=1 and Day_no<7 and Workout_isCompleted!=-2");
 
 
         String Workout = "CREATE TABLE Workout(Workout_id Text primary key,Workout_name Text, Workout_image blob, Workout_video blob,  Workout_sound blob, Workout_calories int)";
@@ -405,7 +403,7 @@ public class SqliteDataClass extends SQLiteOpenHelper {
 
         ArrayList<DayData> arrayList = new ArrayList<>();
 
-        Cursor cursor = sqLiteDatabase.rawQuery("Select * from " + courseName + " Inner JOIN  Workout on Begineer.Workout_id == Workout.Workout_id where Week_no=? and Day_no=?", new String[]{String.valueOf(week), String.valueOf(day)});
+        Cursor cursor = sqLiteDatabase.rawQuery("Select * from " + courseName + " Inner JOIN  Workout on " + courseName + ".Workout_id == Workout.Workout_id where Week_no=? and Day_no=?", new String[]{String.valueOf(week), String.valueOf(day)});
         if (cursor.moveToFirst()) {
             do {
                 int week_no = cursor.getInt(0);
@@ -449,12 +447,11 @@ public class SqliteDataClass extends SQLiteOpenHelper {
         return arrayList;
     }
 
-
     public boolean updateWholeExercise(String courseName, int week) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("Workout_isCompleted", 0);
-        int result = sqLiteDatabase.update(courseName, contentValues, "Week_no=? and Workout_no>0", new String[]{String.valueOf(week)});
+        int result = sqLiteDatabase.update(courseName, contentValues, "Week_no=? and Workout_no>0 and Workout_isCompleted=-1", new String[]{String.valueOf(week)});
 
         if (result == -1) {
             return false;
@@ -508,7 +505,6 @@ public class SqliteDataClass extends SQLiteOpenHelper {
         return arrayList;
     }
 
-
     public ArrayList<Integer> getRestDay(String selectedCourseName, int selectedCourseWeek) {
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
         Cursor cursor = sqLiteDatabase.rawQuery("select * from " + selectedCourseName + " where Workout_no=0 and Week_no=?", new String[]{String.valueOf(selectedCourseWeek)});
@@ -554,16 +550,15 @@ public class SqliteDataClass extends SQLiteOpenHelper {
     }
 
     public int DayCompleteData(String selectedCourseName, int weekno, int dayno) {
-        SQLiteDatabase sqLiteDatabase=this.getReadableDatabase();
-        Cursor cursor=sqLiteDatabase.rawQuery("select Workout_isCompleted from "+selectedCourseName+" where Week_no=? and Day_no=?",new String[]{String.valueOf(weekno),String.valueOf(dayno)});
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery("select Workout_isCompleted from " + selectedCourseName + " where Week_no=? and Day_no=?", new String[]{String.valueOf(weekno), String.valueOf(dayno)});
         int data;
         cursor.moveToFirst();
         do {
-            data=cursor.getInt(0);
-        }while (cursor.moveToNext());
+            data = cursor.getInt(0);
+        } while (cursor.moveToNext());
 
         return data;
-
     }
 
     public int getTotalWorkoutsInAday(String selectedCourseName, int selectedCourseWeek, int workout_day) {
@@ -576,7 +571,7 @@ public class SqliteDataClass extends SQLiteOpenHelper {
 
     public int getWholeWeekDaysCount(String selectedCourseName, int selectedCourseWeek) {
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("Select count(Workout_no) from " + selectedCourseName + " where Week_no=?",new String[]{String.valueOf(selectedCourseWeek)});
+        Cursor cursor = sqLiteDatabase.rawQuery("Select count(Workout_no) from " + selectedCourseName + " where Week_no=?", new String[]{String.valueOf(selectedCourseWeek)});
         cursor.moveToFirst();
         @SuppressLint("Range") String count = cursor.getString(cursor.getColumnIndex(cursor.getColumnName(0)));
         return Integer.parseInt(count);
@@ -584,7 +579,7 @@ public class SqliteDataClass extends SQLiteOpenHelper {
 
     public int getWorkoutCompletedDays(String selectedCourseName, int selectedCourseWeek) {
         SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("Select count(Workout_isCompleted) from " + selectedCourseName + " where Week_no=? and Workout_isCompleted=1",new String[]{String.valueOf(selectedCourseWeek)});
+        Cursor cursor = sqLiteDatabase.rawQuery("Select count(Workout_isCompleted) from " + selectedCourseName + " where Week_no=? and Workout_isCompleted=1", new String[]{String.valueOf(selectedCourseWeek)});
         cursor.moveToFirst();
         @SuppressLint("Range") String count = cursor.getString(cursor.getColumnIndex(cursor.getColumnName(0)));
         return Integer.parseInt(count);
@@ -592,11 +587,93 @@ public class SqliteDataClass extends SQLiteOpenHelper {
 
     public void updateRestDay(String selectedCourseName, int selectedCourseWeek) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        sqLiteDatabase.execSQL("update "+selectedCourseName+ " set Workout_isCompleted = 1 where Workout_no=0 and Week_no=?",new String[]{String.valueOf(selectedCourseWeek)});
+        sqLiteDatabase.execSQL("update " + selectedCourseName + " set Workout_isCompleted = 1 where Workout_no=0 and Week_no=?", new String[]{String.valueOf(selectedCourseWeek)});
     }
+
     public void updateRestDayMinus1(String selectedCourseName, int selectedCourseWeek) {
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
-        sqLiteDatabase.execSQL("update "+selectedCourseName+ " set Workout_isCompleted = -1 where Workout_no=0 and Week_no=?",new String[]{String.valueOf(selectedCourseWeek)});
+        sqLiteDatabase.execSQL("update " + selectedCourseName + " set Workout_isCompleted = -1 where Workout_no=0 and Week_no=?", new String[]{String.valueOf(selectedCourseWeek)});
+    }
+
+    public int getRestDayINT(String selectedCourseName, int selectedCourseWeek) {
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery("Select count(Workout_isCompleted) from " + selectedCourseName + " where Week_no=? and Workout_isCompleted=-2", new String[]{String.valueOf(selectedCourseWeek)});
+        cursor.moveToFirst();
+        @SuppressLint("Range") String count = cursor.getString(cursor.getColumnIndex(cursor.getColumnName(0)));
+        return Integer.parseInt(count);
+    }
+
+    public ArrayList<DayData> getWholeDayData(String courseName, String week, String day) {
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        ArrayList<DayData> resultList = new ArrayList<DayData>();
+
+        Cursor cursor = sqLiteDatabase.rawQuery("Select * from " + courseName + " Inner JOIN  Workout on " + courseName + ".Workout_id == Workout.Workout_id where Week_no=? ", new String[]{String.valueOf(week)});
+
+        if (cursor.moveToFirst()) {
+
+            do {
+                int week_no = cursor.getInt(0);
+                int day_no = cursor.getInt(1);
+                int workout_no = cursor.getInt(2);
+                String workout_name = cursor.getString(7);
+                int workout_timer = cursor.getInt(4);
+                int workout_calories = cursor.getInt(11);
+                int workout_isCompleted = cursor.getInt(5);
+                String workout_id = cursor.getString(3);
+
+                resultList.add(new DayData(week_no, day_no, workout_no, 0, 0, 0, workout_name, ""));
+            } while (cursor.moveToNext());
+        }
+        return resultList;
+    }
+
+    public int[] getRestDayNew(String selectedCourseName, int selectedCourseWeek) {
+        int[] Num = new int[100];
+
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery("select * from " + selectedCourseName + " where  Week_no=? and Workout_isCompleted=-2", new String[]{String.valueOf(selectedCourseWeek)});
+
+        if (cursor.moveToFirst()) {
+            do {
+                for (int i = 0; i < 100; i++) {
+                    Num[i] = cursor.getInt(5);
+                }
+            } while (cursor.moveToNext());
+        }
+
+        return Num;
+    }
+
+
+    public ArrayList<DayData> getListForItemClick(String selectedCourseName, int selectedCourseWeek) {
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        ArrayList<DayData> arrayList = new ArrayList<>();
+
+        Cursor cursor = sqLiteDatabase.rawQuery("Select * from " + selectedCourseName + " Inner JOIN  Workout on " + selectedCourseName + ".Workout_id == Workout.Workout_id where Week_no=?", new String[]{String.valueOf(selectedCourseWeek)});
+        cursor.moveToFirst();
+        if (cursor.moveToFirst()) {
+            do {
+                int week_no = cursor.getInt(0);
+                int day_no = cursor.getInt(1);
+                int workout_no = cursor.getInt(2);
+                String workout_name = cursor.getString(7);
+                int workout_timer = cursor.getInt(4);
+                int workout_calories = cursor.getInt(11);
+                int workout_isCompleted = cursor.getInt(5);
+                String workout_id = cursor.getString(3);
+
+                arrayList.add(new DayData(week_no, day_no, workout_no, 0, 0, workout_isCompleted, workout_name, ""));
+            } while (cursor.moveToNext());
+        }
+        return arrayList;
+    }
+
+    public int getAvgOfData(String selectedCourseName, int selectedCourseWeek, int position) {
+        SQLiteDatabase sqLiteDatabase = this.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery("Select count(Workout_isCompleted) from " + selectedCourseName + " where Week_no=? and Day_no=?", new String[]{String.valueOf(selectedCourseWeek), String.valueOf(position)});
+        cursor.moveToFirst();
+        @SuppressLint("Range") String count = cursor.getString(cursor.getColumnIndex(cursor.getColumnName(0)));
+        return Integer.parseInt(count);
     }
 
 //    public void updateWeekData(String selectedCourseName, int Week) {

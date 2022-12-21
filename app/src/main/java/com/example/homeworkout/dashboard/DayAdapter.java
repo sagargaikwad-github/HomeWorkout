@@ -31,37 +31,34 @@ public class DayAdapter extends RecyclerView.Adapter<DayAdapter.holder> {
     public DayAdapter(ArrayList<DayData> dayDataArrayList, Context context, String courseName) {
         this.dayDataArrayList = dayDataArrayList;
         this.context = context;
-        this.courseName=courseName;
+        this.courseName = courseName;
     }
 
     @NonNull
     @Override
     public holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater=LayoutInflater.from(parent.getContext());
-        View view=inflater.inflate(R.layout.dayview_item,parent,false);
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        View view = inflater.inflate(R.layout.dayview_item, parent, false);
         return new holder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull holder holder, @SuppressLint("RecyclerView") int position) {
         holder.day_exname_tv.setText(dayDataArrayList.get(position).getWorkoutname());
-        holder.day_extimer_tv.setText("Total Time : "+String.valueOf(dayDataArrayList.get(position).getWorkouttimer())+" sec");
+        holder.day_extimer_tv.setText("Total Time : " + String.valueOf(dayDataArrayList.get(position).getWorkouttimer()) + " sec");
+        holder.day_eximage_iv.setImageResource(R.drawable.rip2);
 
-
-
-        holder.day_explay_iv.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(context,PlayExerciseSingle.class);
-                intent.putExtra("CourseName",courseName);
-                intent.putExtra("week",dayDataArrayList.get(position).getWeekno());
-                intent.putExtra("day",dayDataArrayList.get(position).getDayno());
-                intent.putExtra("workoutNo",dayDataArrayList.get(position).getWorkoutno());
+                Intent intent = new Intent(context, PlayExerciseSingle.class);
+                intent.putExtra("CourseName", courseName);
+                intent.putExtra("week", dayDataArrayList.get(position).getWeekno());
+                intent.putExtra("day", dayDataArrayList.get(position).getDayno());
+                intent.putExtra("workoutNo", dayDataArrayList.get(position).getWorkoutno());
                 context.startActivity(intent);
             }
         });
-
-
     }
 
     @Override
@@ -70,17 +67,17 @@ public class DayAdapter extends RecyclerView.Adapter<DayAdapter.holder> {
     }
 
     class holder extends RecyclerView.ViewHolder {
-        ImageView day_eximage_iv,day_explay_iv;
-        TextView day_exname_tv,day_extimer_tv;
+        ImageView day_eximage_iv, day_explay_iv;
+        TextView day_exname_tv, day_extimer_tv;
 
         public holder(@NonNull View itemView) {
             super(itemView);
 
-            day_eximage_iv=itemView.findViewById(R.id.day_eximage_iv);
-            day_explay_iv=itemView.findViewById(R.id.day_explay_iv);
+            day_eximage_iv = itemView.findViewById(R.id.day_eximage_iv);
+            day_explay_iv = itemView.findViewById(R.id.day_explay_iv);
 
-            day_exname_tv=itemView.findViewById(R.id.day_exname_tv);
-            day_extimer_tv=itemView.findViewById(R.id.day_extimer_tv);
+            day_exname_tv = itemView.findViewById(R.id.day_exname_tv);
+            day_extimer_tv = itemView.findViewById(R.id.day_extimer_tv);
         }
     }
 }

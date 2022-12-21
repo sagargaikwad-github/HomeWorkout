@@ -57,7 +57,9 @@ public class WeeksDisplay extends AppCompatActivity  {
 
         Bundle bundle=getIntent().getExtras();
         SelectedCourseName=bundle.getString("Selected Course Name");
-        SelectedCourseID=bundle.getInt("Selected Course Id");
+
+
+        //SelectedCourseID=bundle.getInt("Selected Course Id");
 
         tabLayout = findViewById(R.id.tabLayout);
         viewPager2 = findViewById(R.id.view_pager2);

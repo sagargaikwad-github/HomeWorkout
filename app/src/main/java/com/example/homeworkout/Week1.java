@@ -22,38 +22,39 @@ public class Week1 extends Fragment {
     String courseName;
     WeekWiseDayViewAdapter weekWiseDayViewAdapter;
     RecyclerView Week1RV;
-    ArrayList<CourseModelData>arrayList=new ArrayList<>();
+    ArrayList<CourseModelData> arrayList = new ArrayList<>();
 
     public Week1(String selectedCourseName) {
-        this.courseName=selectedCourseName;
+        this.courseName = selectedCourseName;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         arrayList.clear();
-        arrayList.add(new CourseModelData(1,0));
-        arrayList.add(new CourseModelData(2,0));
-        arrayList.add(new CourseModelData(3,0));
-        arrayList.add(new CourseModelData(4,0));
-        arrayList.add(new CourseModelData(5,0));
-        arrayList.add(new CourseModelData(6,0));
-        arrayList.add(new CourseModelData(7,0));
+
+        arrayList.add(new CourseModelData(1, 0));
+        arrayList.add(new CourseModelData(2, 0));
+        arrayList.add(new CourseModelData(3, 0));
+        arrayList.add(new CourseModelData(4, 0));
+        arrayList.add(new CourseModelData(5, 0));
+        arrayList.add(new CourseModelData(6, 0));
+        arrayList.add(new CourseModelData(7, 0));
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view= inflater.inflate(R.layout.fragment_week1, container, false);
-         Week1RV=view.findViewById(R.id.weeks1_rv);
+        View view = inflater.inflate(R.layout.fragment_week1, container, false);
+        Week1RV = view.findViewById(R.id.weeks1_rv);
         return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        weekWiseDayViewAdapter=new WeekWiseDayViewAdapter(arrayList,getActivity(),courseName,1);
+        weekWiseDayViewAdapter = new WeekWiseDayViewAdapter(arrayList, getActivity(), courseName, 1);
         Week1RV.setLayoutManager(new LinearLayoutManager(getActivity()));
         Week1RV.setAdapter(weekWiseDayViewAdapter);
     }

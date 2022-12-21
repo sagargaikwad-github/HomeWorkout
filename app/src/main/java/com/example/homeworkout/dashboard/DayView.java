@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -22,58 +23,56 @@ import java.util.ArrayList;
 public class DayView extends AppCompatActivity {
 
     String CourseName;
-    int week,day;
+    int week, day;
     Toolbar toolbar;
     ImageView day_back_btn;
     RecyclerView day_view_rv;
-    ArrayList<DayData>dayDataArrayList=new ArrayList<DayData>();
+    ArrayList<DayData> dayDataArrayList = new ArrayList<DayData>();
     DayAdapter dayAdapter;
-    TextView caloriesBurnedTV,totalTimeTV;
-    LinearLayout startLL;
+    TextView caloriesBurnedTV, totalTimeTV;
+    LinearLayout startLL,completeLL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_day_view);
 
-        toolbar=findViewById(R.id.day_toolBar);
-        day_back_btn=findViewById(R.id.day_back_btn);
-        day_view_rv=findViewById(R.id.day_view_rv);
+        toolbar = findViewById(R.id.day_toolBar);
+        day_back_btn = findViewById(R.id.day_back_btn);
+        day_view_rv = findViewById(R.id.day_view_rv);
 
-        caloriesBurnedTV=findViewById(R.id.caloriesBurnedTV);
-        totalTimeTV=findViewById(R.id.totalTimeTV);
-        startLL=findViewById(R.id.startLL);
+        caloriesBurnedTV = findViewById(R.id.caloriesBurnedTV);
+        totalTimeTV = findViewById(R.id.totalTimeTV);
+        startLL = findViewById(R.id.startLL);
+        completeLL = findViewById(R.id.completeLL);
 
-        Bundle bundle=getIntent().getExtras();
-        CourseName=bundle.getString("CourseName");
-        week=bundle.getInt("Week");
-        day=bundle.getInt("Day");
+        Bundle bundle = getIntent().getExtras();
+        CourseName = bundle.getString("CourseName");
+        week = bundle.getInt("Week");
+        day = bundle.getInt("Day");
 
         setSupportActionBar(toolbar);
 
-        SqliteDataClass sqliteDataClass=new SqliteDataClass(this);
-        dayDataArrayList=sqliteDataClass.dayArrayList(CourseName,week,day);
+        SqliteDataClass sqliteDataClass = new SqliteDataClass(this);
+        dayDataArrayList = sqliteDataClass.dayArrayList(CourseName, week, day);
 
-
-        int calories=0;
-        int calories1=0;
-        for(int i=0;i<dayDataArrayList.size();i++)
-        {
-            calories1=dayDataArrayList.get(i).getCalories();
-            calories=calories1+calories;
+        int calories = 0;
+        int calories1 = 0;
+        for (int i = 0; i < dayDataArrayList.size(); i++) {
+            calories1 = dayDataArrayList.get(i).getCalories();
+            calories = calories1 + calories;
         }
-        caloriesBurnedTV.setText("Calories Burned\n"+String.valueOf(calories)+" cal");
+        caloriesBurnedTV.setText("Calories Burned\n" + String.valueOf(calories) + " cal");
 
 
-        float time=0;
-        float time1=0;
-        for(int i=0;i<dayDataArrayList.size();i++)
-        {
-            time1=dayDataArrayList.get(i).getWorkouttimer();
-            time=time1+time;
+        float time = 0;
+        float time1 = 0;
+        for (int i = 0; i < dayDataArrayList.size(); i++) {
+            time1 = dayDataArrayList.get(i).getWorkouttimer();
+            time = time1 + time;
         }
-        Float GetTime= Float.valueOf(time/60);
-        totalTimeTV.setText("Total Time\n"+String.valueOf(GetTime)+" Mins");
+        Float GetTime = Float.valueOf(time / 60);
+        totalTimeTV.setText("Total Time\n" + String.valueOf(GetTime) + " Mins");
 
 
         day_back_btn.setOnClickListener(new View.OnClickListener() {
@@ -85,7 +84,7 @@ public class DayView extends AppCompatActivity {
     }
 
     private void setSupportActionBar(Toolbar toolbar) {
-        toolbar.setTitle("Day "+day);
+        toolbar.setTitle("Day " + day);
         toolbar.setTitleTextColor(Color.WHITE);
     }
 
@@ -93,20 +92,34 @@ public class DayView extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         day_view_rv.setLayoutManager(new LinearLayoutManager(this));
-        dayAdapter=new DayAdapter(dayDataArrayList,this,CourseName);
+        dayAdapter = new DayAdapter(dayDataArrayList, this, CourseName);
         day_view_rv.setAdapter(dayAdapter);
+
+
+        SqliteDataClass sqliteDataClass=new SqliteDataClass(this);
+        ArrayList<DayData>arrayList=new ArrayList<>();
+        arrayList=sqliteDataClass.getStartBtData(CourseName,week,day,0);
+
+        if(!arrayList.isEmpty())
+        {
+            startLL.setVisibility(View.VISIBLE);
+            completeLL.setVisibility(View.GONE);
+        }else
+        {
+            startLL.setVisibility(View.GONE);
+            completeLL.setVisibility(View.VISIBLE);
+        }
 
         startLL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(DayView.this,PlayExercise.class);
-                intent.putExtra("CourseName",CourseName);
-                intent.putExtra("week",week);
-                intent.putExtra("day",day);
+                Intent intent = new Intent(DayView.this, PlayExercise.class);
+                intent.putExtra("CourseName", CourseName);
+                intent.putExtra("week", week);
+                intent.putExtra("day", day);
                 startActivity(intent);
             }
         });
-
 
 
     }
